@@ -4,7 +4,13 @@ export default class Budgets extends Component {
     render() {
         return (
             <div>
-                <h1>List of Budgets</h1>
+                <div>
+                    <h1 class="budget-list-header">Budget List</h1>
+                </div>
+
+                <div>
+
+                </div>
             </div>
         )
     }
