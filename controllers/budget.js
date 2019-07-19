@@ -9,7 +9,10 @@ const budgetRouter = express.Router()
 
 
 budgetRouter.get('/', (req, res) => {
-  res.json(budgetApi.getAllBudgets())
+  budgetApi.getAllBudgets()
+    .then((budgets) => {
+      res.json(budgets) 
+    })
 })
 
 budgetRouter.get('/:budgetId', (req, res) => {
