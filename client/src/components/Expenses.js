@@ -2,27 +2,26 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 
-export default class Budgets extends Component {
-
+export default class Expenses extends Component {
     state = {
-        budgets: [],
-        newBudget: {
+        expenses: [],
+        newExpense: {
             name: '',
-            // expenseName: '',
-            // estimatedAmount: '',
-            // actualPaidAmount: ''
+            expenseName: '',
+            estimatedAmount: '',
+            actualPaidAmount: ''
         },
         isNewFormDisplayed: false
     }
 
     componentDidMount() {
-        this.getAllBudgets()
+        this.getAllExpenses()
     }
 
-    getAllBudgets = () => {
-        axios.get('/api/budgets')
+    getAllExpenses = () => {
+        axios.get('/api/expenses')
                 .then((res) => {
-                this.setState({budgets: res.data})
+                this.setState({expenses: res.data})
             })
     }
 
@@ -33,27 +32,27 @@ export default class Budgets extends Component {
     }
 
     handleInputChange = (event) => {
-        const copiedBudget = {...this.state.newBudget}
-        copiedBudget[event.target.name] = event.target.value 
+        const copiedExpense = {...this.state.newExpense}
+        copiedExpense[event.target.name] = event.target.value 
 
-        this.setState({newBudget: copiedBudget})
+        this.setState({newExpense: copiedExpense})
     }
 
     handleSubmit = (event) => {
         event.preventDefault()       
-        axios.post('/api/budgets', this.state.newBudget)
+        axios.post('/api/expenses', this.state.newExpense)
             .then(() => {
                 this.setState({isNewFormDisplayed: false})
-                this.getAllBudgets() 
+                this.getAllExpenses() 
             })
     }
 
     render() {
-        let budgetsList = this.state.budgets.map((budget) => {
-            console.log(budget)
+        let expensesList = this.state.expenses.map((expense) => {
+            console.log(expense)
             return (
                 <div>
-                    <Link key={budget._id} to={`/budgets/${budget._id}`}>{budget.name}</Link>
+                    <Link key={expense._id} to={`/expenses/${expense._id}`}>{expense.name}</Link>
                 </div>
             )
         })
@@ -61,22 +60,22 @@ export default class Budgets extends Component {
         return (
             this.state.isNewFormDisplayed
                 ? <form onSubmit={this.handleSubmit}>
-                    <label htmlFor="new-budget-name">Budget Name</label>
+                    <label htmlFor="new-expense-name">Expense Name</label>
                     <input
                         type="text"
                         name="name"
-                        id="new-budget-name"
+                        id="new-expense-name"
                         onChange={this.handleInputChange}
-                        value={this.state.newBudget.name}
+                        value={this.state.newExpense.name}
                     />
 
-                    {/* <label htmlFor="expense-name">Expense Name: </label>
+                    <label htmlFor="expense-name">Expense Name: </label>
                     <input 
                         type="text" 
                         id="expense-name" 
                         name="expenseName" 
                         onChange={this.handleInputChange} 
-                        value={this.state.newBudget.expenseName}
+                        value={this.state.newExpense.expenseName}
                     />
 
                     <label htmlFor="estimated-amount">Estimated Amount: </label>
@@ -85,7 +84,7 @@ export default class Budgets extends Component {
                         id="estimated-amount" 
                         name="estimatedAmount" 
                         onChange={this.handleInputChange} 
-                        value={this.state.newBudget.estimatedAmount}
+                        value={this.state.newExpense.estimatedAmount}
                     />
 
                     <label htmlFor="actual-paid-amount">Actual Paid Amount: </label>
@@ -94,20 +93,20 @@ export default class Budgets extends Component {
                         id="actual-paid-amount" 
                         name="actualPaidAmount" 
                         onChange={this.handleInputChange} 
-                        value={this.state.newBudget.actualPaidAmount}
-                    /> */}
+                        value={this.state.newExpense.actualPaidAmount}
+                    />
 
-                    <input type="submit" value="Add Budget" />
+                    <input type="submit" value="Add Expense" />
                 </form>
 
                 :<div>
                     <div>
-                        <h1 className="budget-list-header">Budget List: </h1>
-                        <button onClick={this.handleToggleNewForm}>Create New Budget</button>
+                        <h1 className="expense-list-header">Expense List: </h1>
+                        <button onClick={this.handleToggleNewForm}>Create New Expense</button>
                     </div>
                     
-                    <div id="budget-list">
-                        {budgetsList}
+                    <div id="expense-list">
+                        {expensesList}
                     </div>
                 </div>
         )

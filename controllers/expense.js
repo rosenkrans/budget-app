@@ -2,10 +2,10 @@ const express = require('express')
 
 const expenseApi = require('../models/expense.js')
 
-const expenseRouter = express.Router()
+const expenseRouter = express.Router({mergeParams: true})
 
 expenseRouter.get('/', (req, res) => {
-  expenseApi.getAllExpenses()
+  expenseApi.getAllExpensesByBudgetId()
     .then((expenses) => {
       res.json(expenses) 
     })

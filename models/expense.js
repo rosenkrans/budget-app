@@ -4,13 +4,14 @@ const ExpenseSchema = new mongoose.Schema({
  name: String,
  expenseName: String,
  estimatedAmount: Number,
- actualPaidAmount: Number
+ actualPaidAmount: Number,
+ budgetId: mongoose.Types.ObjectId
 })
 
 const ExpenseCollection = mongoose.model('Expense', ExpenseSchema)
 
-function getAllExpenses() {
-  return ExpenseCollection.find()
+function getAllExpensesByBudgetId(budgetId) {
+  return ExpenseCollection.find({budgetId})
 }
 
 function getSingleExpense(expenseId) {
@@ -30,7 +31,7 @@ function deleteExpense(expenseId) {
 }
 
 module.exports = {
-  getAllExpenses,
+  getAllExpensesByBudgetId,
   getSingleExpense,
   addNewExpense,
   updateExpense,
