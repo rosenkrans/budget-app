@@ -6,12 +6,10 @@ global.budgetModel = [];
 
 
 const BudgetSchema = new mongoose.Schema({
- budgetName: String
+ name: String
 })
 
-
 const BudgetCollection = mongoose.model('Budget', BudgetSchema)
-
 
 
 function getAllBudgets() {
