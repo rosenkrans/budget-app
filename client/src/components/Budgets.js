@@ -8,7 +8,9 @@ export default class Budgets extends Component {
         budgets: [],
         newBudget: {
             name: '',
-            expenseName: ''       
+            expenseName: '',
+            estimatedAmount: '',
+            actualPaidAmount: ''
         },
         isNewFormDisplayed: false
     }
@@ -50,7 +52,9 @@ export default class Budgets extends Component {
         let budgetsList = this.state.budgets.map((budget) => {
             console.log(budget)
             return (
-                <Link key={budget._id} to={`/budgets/${budget._id}`}>{budget.name}</Link>
+                <div>
+                    <Link key={budget._id} to={`/budgets/${budget._id}`}>{budget.name}</Link>
+                </div>
             )
         })
 
@@ -72,7 +76,7 @@ export default class Budgets extends Component {
                         id="expense-name" 
                         name="expenseName" 
                         onChange={this.handleInputChange} 
-                        value={this.state.budget.expenseName}
+                        value={this.state.newBudget.expenseName}
                     />
 
                     <label htmlFor="estimated-amount">Estimated Amount: </label>
@@ -81,7 +85,16 @@ export default class Budgets extends Component {
                         id="estimated-amount" 
                         name="estimatedAmount" 
                         onChange={this.handleInputChange} 
-                        value={this.state.budget.estimatedAmount}
+                        value={this.state.newBudget.estimatedAmount}
+                    />
+
+                    <label htmlFor="actual-paid-amount">Actual Paid Amount: </label>
+                    <input 
+                        type="text" 
+                        id="actual-paid-amount" 
+                        name="actualPaidAmount" 
+                        onChange={this.handleInputChange} 
+                        value={this.state.newBudget.actualPaidAmount}
                     />
 
                     <input type="submit" value="Add Budget" />
@@ -94,7 +107,6 @@ export default class Budgets extends Component {
                     </div>
                     
                     <div id="budget-list">
-                        <h3>Something</h3>
                         {budgetsList}
                     </div>
                 </div>

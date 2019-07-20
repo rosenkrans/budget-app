@@ -1,7 +1,5 @@
 const mongoose = require('./connection.js')
 
-global.budgetModel = [];
-
 const BudgetSchema = new mongoose.Schema({
  name: String,
  expenseName: String,
