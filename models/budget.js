@@ -1,16 +1,15 @@
-
 const mongoose = require('./connection.js')
-
 
 global.budgetModel = [];
 
-
 const BudgetSchema = new mongoose.Schema({
- name: String
+ name: String,
+ expenseName: String,
+ estimatedAmount: Number,
+ actualPaidAmount: Number
 })
 
 const BudgetCollection = mongoose.model('Budget', BudgetSchema)
-
 
 function getAllBudgets() {
   return BudgetCollection.find()

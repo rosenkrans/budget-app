@@ -7,7 +7,8 @@ export default class Budgets extends Component {
     state = {
         budgets: [],
         newBudget: {
-            name: '',           
+            name: '',
+            expenseName: ''       
         },
         isNewFormDisplayed: false
     }
@@ -65,12 +66,30 @@ export default class Budgets extends Component {
                         value={this.state.newBudget.name}
                     />
 
+                    <label htmlFor="expense-name">Expense Name: </label>
+                    <input 
+                        type="text" 
+                        id="expense-name" 
+                        name="expenseName" 
+                        onChange={this.handleInputChange} 
+                        value={this.state.budget.expenseName}
+                    />
+
+                    <label htmlFor="estimated-amount">Estimated Amount: </label>
+                    <input 
+                        type="text" 
+                        id="estimated-amount" 
+                        name="estimatedAmount" 
+                        onChange={this.handleInputChange} 
+                        value={this.state.budget.estimatedAmount}
+                    />
+
                     <input type="submit" value="Add Budget" />
                 </form>
 
                 :<div>
                     <div>
-                        <h1 className="budget-list-header">Budget List</h1>
+                        <h1 className="budget-list-header">Budget List: </h1>
                         <button onClick={this.handleToggleNewForm}>Create New Budget</button>
                     </div>
                     

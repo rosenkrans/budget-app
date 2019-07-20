@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Budgets from './components/Budgets.js'
+import SingleBudget from './components/SingleBudget.js'
 import './App.css';
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={Budgets}/>
+          <Route path="/budgets/:budgetId" component={SingleBudget} />
         </Switch>
       </Router>
     </div>

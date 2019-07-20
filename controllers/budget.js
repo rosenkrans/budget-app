@@ -1,12 +1,8 @@
-
 const express = require('express')
-
 
 const budgetApi = require('../models/budget.js')
 
-
 const budgetRouter = express.Router()
-
 
 budgetRouter.get('/', (req, res) => {
   budgetApi.getAllBudgets()
@@ -54,7 +50,6 @@ budgetRouter.delete('/:budgetId', (req, res) => {
       console.log(err)
     })
 })
-
 
 module.exports = {
   budgetRouter
