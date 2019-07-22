@@ -4,7 +4,7 @@ My Project 3 is a budgeting app.
 ## Links
 
 1. Trello - https://trello.com/b/XRhoG4dA/budget-app
-1. Heroku - 
+1. Heroku - https://budget-app-marksei22.herokuapp.com/ 
 
 ## Coding languages and libraries
 
@@ -13,6 +13,8 @@ My Project 3 is a budgeting app.
 * JavaScript
 * Express
 * Mongoose
+* Node.js
+* AJAX
 * React
 
 ## Features
