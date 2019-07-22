@@ -78,11 +78,9 @@ export default class SingleBudget extends Component {
                 <button onClick={this.handleToggleEditForm}>Edit Budget</button>
                 <button onClick={this.handleDeleteBudget}>Delete Budget</button>
                 <h2>{this.state.budget.name} Budget</h2>
-                {/* <h3>Expense: {this.state.budget.expenseName}</h3>
-                <h3>Estimated Amount: {this.state.budget.estimatedAmount}</h3>
-                <h3>Actual Amount Paid: {this.state.budget.actualPaidAmount}</h3>             */}
+                
                 <div>
-                    {/* {expensesList} */}
+                    
                 </div>
             </div>
         )

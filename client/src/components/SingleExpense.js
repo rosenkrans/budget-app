@@ -53,19 +53,19 @@ export default class SingleExpense extends Component {
 
     render() {
         if(this.state.redirectToHome) {
-            return <Redirect to="/" />
+            return <Redirect to="/expenses" />
         }
         return (
             this.state.isEditFormDisplayed
             ? <form onSubmit={this.handleSubmit}>
-                <a href='/'>Home</a>
+                <a href='/expenses'>Expenses</a>
                 <label htmlFor="expense-name">Expense Name: </label>
                 <input 
                     type="text" 
                     id="expense-name" 
                     name="expenseName" 
                     onChange={this.handleInputChange} 
-                    value={this.state.expense.name}
+                    value={this.state.expense.expenseName}
                 />
 
                 <label htmlFor="estimated-amount">Estimated Amount: </label>
@@ -91,7 +91,7 @@ export default class SingleExpense extends Component {
 
             :<div>
                 {/* <button >Home</button> */}
-                <a href='/'>Home</a>
+                <a href='/expenses'>Expenses List</a>
                 <button onClick={this.handleToggleEditForm}>Edit Expense</button>
                 <button onClick={this.handleDeleteExpense}>Delete Expense</button>
                 {/* <h2>{this.state.expense.name} Expense</h2> */}
