@@ -16,6 +16,7 @@ My Project 3 is a budgeting app.
 * Node.js
 * AJAX
 * React
+* Material-UI
 
 ## Features
 
