@@ -75,9 +75,13 @@ export default class SingleBudget extends Component {
             </form>
 
             :<div>
-                <a href='/'>Home</a>
-                <button onClick={this.handleToggleEditForm}>Edit Budget</button>
-                <button onClick={this.handleDeleteBudget}>Delete Budget</button>
+                <div>
+                    <a href='/'>Home</a>
+                </div>
+                <div>
+                    <button onClick={this.handleToggleEditForm}>Edit Budget Name</button>
+                    <button onClick={this.handleDeleteBudget}>Delete Budget</button>
+                </div>
                 <h2>{this.state.budget.name} Budget</h2>
                 
                 <div>

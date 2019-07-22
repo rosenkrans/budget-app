@@ -72,8 +72,8 @@ export default class Budgets extends Component {
 
                 :<div>
                     <div>
-                        <h1 className="budget-list-header">Budget List: </h1>
-                        <button onClick={this.handleToggleNewForm}>Create New Budget</button>
+                        <button class="create-budget-button" onClick={this.handleToggleNewForm}>Create New Budget</button>
+                        <h1 className="budget-list-header">List of Budgets </h1>                       
                     </div>
                     
                     <div id="budget-list">
