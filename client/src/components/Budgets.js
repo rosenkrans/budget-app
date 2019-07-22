@@ -8,9 +8,6 @@ export default class Budgets extends Component {
         budgets: [],
         newBudget: {
             name: '',
-            // expenseName: '',
-            // estimatedAmount: '',
-            // actualPaidAmount: ''
         },
         isNewFormDisplayed: false
     }

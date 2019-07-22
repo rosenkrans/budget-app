@@ -3,10 +3,10 @@ import axios from 'axios'
 import {Link} from 'react-router-dom'
 
 export default class Expenses extends Component {
+
     state = {
         expenses: [],
         newExpense: {
-            name: '',
             expenseName: '',
             estimatedAmount: '',
             actualPaidAmount: ''
@@ -21,7 +21,8 @@ export default class Expenses extends Component {
     getAllExpenses = () => {
         axios.get('/api/expenses')
                 .then((res) => {
-                this.setState({expenses: res.data})
+                    // console.log(res.data)
+                    this.setState({expenses: res.data})
             })
     }
 
@@ -52,7 +53,7 @@ export default class Expenses extends Component {
             console.log(expense)
             return (
                 <div>
-                    <Link key={expense._id} to={`/expenses/${expense._id}`}>{expense.name}</Link>
+                    <Link key={expense._id} to={`/expenses/${expense._id}`}>{expense.expenseName}</Link>
                 </div>
             )
         })
@@ -60,20 +61,11 @@ export default class Expenses extends Component {
         return (
             this.state.isNewFormDisplayed
                 ? <form onSubmit={this.handleSubmit}>
-                    <label htmlFor="new-expense-name">Expense Name</label>
-                    <input
-                        type="text"
-                        name="name"
-                        id="new-expense-name"
-                        onChange={this.handleInputChange}
-                        value={this.state.newExpense.name}
-                    />
-
                     <label htmlFor="expense-name">Expense Name: </label>
                     <input 
                         type="text" 
-                        id="expense-name" 
                         name="expenseName" 
+                        id="expense-name" 
                         onChange={this.handleInputChange} 
                         value={this.state.newExpense.expenseName}
                     />
@@ -81,8 +73,8 @@ export default class Expenses extends Component {
                     <label htmlFor="estimated-amount">Estimated Amount: </label>
                     <input 
                         type="text" 
-                        id="estimated-amount" 
                         name="estimatedAmount" 
+                        id="estimated-amount" 
                         onChange={this.handleInputChange} 
                         value={this.state.newExpense.estimatedAmount}
                     />
@@ -90,8 +82,8 @@ export default class Expenses extends Component {
                     <label htmlFor="actual-paid-amount">Actual Paid Amount: </label>
                     <input 
                         type="text" 
-                        id="actual-paid-amount" 
                         name="actualPaidAmount" 
+                        id="actual-paid-amount" 
                         onChange={this.handleInputChange} 
                         value={this.state.newExpense.actualPaidAmount}
                     />

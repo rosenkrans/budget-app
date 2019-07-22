@@ -69,33 +69,6 @@ export default class SingleBudget extends Component {
                     value={this.state.budget.name}
                 />
 
-                {/* <label htmlFor="expense-name">Expense Name: </label>
-                <input 
-                    type="text" 
-                    id="expense-name" 
-                    name="expenseName" 
-                    onChange={this.handleInputChange} 
-                    value={this.state.budget.expenseName}
-                />
-
-                <label htmlFor="estimated-amount">Estimated Amount: </label>
-                <input 
-                    type="text" 
-                    id="estimated-amount" 
-                    name="estimatedAmount" 
-                    onChange={this.handleInputChange} 
-                    value={this.state.budget.estimatedAmount}
-                />
-
-                <label htmlFor="actual-paid-amount">Actual Paid Amount: </label>
-                <input 
-                    type="text" 
-                    id="actual-paid-amount" 
-                    name="actualPaidAmount" 
-                    onChange={this.handleInputChange} 
-                    value={this.state.budget.actualPaidAmount}
-                /> */}
-
                 <input type="submit" value="Update Budget" />
             </form>
 

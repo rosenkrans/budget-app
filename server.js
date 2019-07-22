@@ -51,7 +51,10 @@ app.use(express.static(`${__dirname}/client/build`))
  * the paths defined in the router.
  */
 app.use('/api/budgets', budgetRouter)
-app.use('/api/budgets/:budgetId/expenses', expenseRouter)
+app.use('/api/budgets/:budgetId', budgetRouter)
+// app.use('/api/budgets/:budgetId/expenses', expenseRouter)
+app.use('/api/expenses', expenseRouter)
+app.use('/api/expenses/:expenseId', expenseRouter)
 
 /* Step 5
  *
