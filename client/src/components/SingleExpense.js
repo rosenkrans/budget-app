@@ -56,7 +56,6 @@ export default class SingleExpense extends Component {
         return (
             this.state.isEditFormDisplayed
             ? <form onSubmit={this.handleSubmit}>
-                {/* <a href='/expenses'>Expenses</a> */}
                 <label htmlFor="expense-name">Expense Name: </label>
                 <input 
                     type="text" 
@@ -92,8 +91,8 @@ export default class SingleExpense extends Component {
                     <Link to={`/budgets/${this.props.match.params.budgetId}`}>Back to Budget</Link>
                 </div>
                 <div class="single-expense-buttons">
-                    <button onClick={this.handleToggleEditForm}>Edit Expense</button>
-                    <button onClick={this.handleDeleteExpense}>Delete Expense</button>
+                    <button class="button" onClick={this.handleToggleEditForm}>Edit Expense</button>
+                    <button class="button" onClick={this.handleDeleteExpense}>Delete Expense</button>
                 </div>
                 <h3>Expense: {this.state.expense.expenseName}</h3>
                 <h3>Estimated Amount: {this.state.expense.estimatedAmount}</h3>

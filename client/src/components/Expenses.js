@@ -93,7 +93,7 @@ export default class Expenses extends Component {
 
                 :<div>
                     <div>
-                        <button onClick={this.handleToggleNewForm}>Create New Expense</button>
+                        <button class="button" onClick={this.handleToggleNewForm}>Create New Expense</button>
                         <h2 className="expense-list-header">Expense List: </h2>                      
                     </div>
                     
