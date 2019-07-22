@@ -14,6 +14,7 @@ My Project 3 is a budgeting app.
 * Express
 * Mongoose
 * Node.js
+* AJAX
 * React
 
 ## Features
