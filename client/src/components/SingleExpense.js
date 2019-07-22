@@ -91,7 +91,7 @@ export default class SingleExpense extends Component {
 
             :<div>
                 {/* <button >Home</button> */}
-                <a href='/expenses'>Expenses List</a>
+                <a href='/expenses'>Expenses List </a>
                 <button onClick={this.handleToggleEditForm}>Edit Expense</button>
                 <button onClick={this.handleDeleteExpense}>Delete Expense</button>
                 {/* <h2>{this.state.expense.name} Expense</h2> */}

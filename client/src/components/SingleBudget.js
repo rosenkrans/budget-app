@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Redirect, Link } from 'react-router-dom'
+import Expenses from './Expenses.js'
 
 export default class SingleBudget extends Component {
 
@@ -80,7 +81,7 @@ export default class SingleBudget extends Component {
                 <h2>{this.state.budget.name} Budget</h2>
                 
                 <div>
-                    
+                    <Expenses />
                 </div>
             </div>
         )
