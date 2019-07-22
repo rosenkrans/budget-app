@@ -54,6 +54,8 @@ export default class Expenses extends Component {
             return (
                 <div>
                     <Link key={expense._id} to={`/budgets/${this.props.budgetId}/expenses/${expense._id}`}>{expense.expenseName}</Link>
+                    <p>Estimated Amount: {expense.estimatedAmount}</p>
+                    <p>Actual Amount Paid: {expense.actualPaidAmount}</p>   
                 </div>
             )
         })

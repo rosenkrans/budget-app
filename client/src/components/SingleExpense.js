@@ -96,7 +96,7 @@ export default class SingleExpense extends Component {
                 </div>
                 <h3>Expense: {this.state.expense.expenseName}</h3>
                 <h3>Estimated Amount: {this.state.expense.estimatedAmount}</h3>
-                <h3>Actual Amount Paid: {this.state.expense.actualPaidAmount}</h3>            
+                <h3>Actual Amount Paid: {this.state.expense.actualPaidAmount}</h3>      
             </div>
         )
     }
