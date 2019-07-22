@@ -11,7 +11,7 @@ const ExpenseSchema = new mongoose.Schema({
 const ExpenseCollection = mongoose.model('Expense', ExpenseSchema)
 
 function getAllExpensesByBudgetId(budgetId) {
-  return ExpenseCollection.find({budgetId})
+  return ExpenseCollection.find({budgetId: budgetId})
 }
 
 function getSingleExpense(expenseId) {

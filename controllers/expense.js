@@ -5,9 +5,12 @@ const expenseApi = require('../models/expense.js')
 const expenseRouter = express.Router({mergeParams: true})
 
 expenseRouter.get('/', (req, res) => {
-  expenseApi.getAllExpensesByBudgetId()
+  expenseApi.getAllExpensesByBudgetId(req.params.budgetId)
     .then((expenses) => {
       res.json(expenses) 
+    })
+    .catch((err) => {
+      console.log(err)
     })
 })
 
@@ -22,6 +25,7 @@ expenseRouter.get('/:expenseId', (req, res) => {
 })
 
 expenseRouter.post('/', (req, res) => {
+  req.body.budgetId = req.params.budgetId
   expenseApi.addNewExpense(req.body) 
     .then((expense) => {
       res.json(expense) 

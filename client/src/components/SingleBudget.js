@@ -7,6 +7,7 @@ export default class SingleBudget extends Component {
 
     state = {
         budget: {},
+        // expenses: [],
         isEditFormDisplayed: false, 
         redirectToHome: false
     }
@@ -16,9 +17,13 @@ export default class SingleBudget extends Component {
             .then((res) => {
                 this.setState({budget: res.data})
             })
-            .then((res) => {
+            .then(() => {
                 axios.get(`/api/budgets/${this.props.match.params.budgetId}/expenses`)
             })
+            // .then((expenses) => {
+            //     console.log(expenses)
+            //     this.setState({expenses: expenses.data})
+            // })
     }
 
     handleInputChange = (event) => {
@@ -81,7 +86,10 @@ export default class SingleBudget extends Component {
                 <h2>{this.state.budget.name} Budget</h2>
                 
                 <div>
-                    {/* <Expenses /> */}
+                    <Expenses 
+                        // expenses={this.state.expenses}
+                        budgetId={this.props.match.params.budgetId}
+                    />
                 </div>
             </div>
         )

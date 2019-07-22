@@ -19,9 +19,9 @@ export default class Expenses extends Component {
     }
 
     getAllExpenses = () => {
-        axios.get('/api/expenses')
+        axios.get(`/api/budgets/${this.props.budgetId}/expenses`)
                 .then((res) => {
-                    // console.log(res.data)
+                    console.log(res.data)
                     this.setState({expenses: res.data})
             })
     }
@@ -41,7 +41,7 @@ export default class Expenses extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault()       
-        axios.post('/api/expenses', this.state.newExpense)
+        axios.post(`/api/budgets/${this.props.budgetId}/expenses`, this.state.newExpense)
             .then(() => {
                 this.setState({isNewFormDisplayed: false})
                 this.getAllExpenses() 
@@ -53,7 +53,7 @@ export default class Expenses extends Component {
             console.log(expense)
             return (
                 <div>
-                    <Link key={expense._id} to={`/expenses/${expense._id}`}>{expense.expenseName}</Link>
+                    <Link key={expense._id} to={`/budgets/${this.props.budgetId}/expenses/${expense._id}`}>{expense.expenseName}</Link>
                 </div>
             )
         })
@@ -93,7 +93,7 @@ export default class Expenses extends Component {
 
                 :<div>
                     <div>
-                    <a href='/'>Home</a>
+                    {/* <a href='/'>Home</a> */}
                         <h1 className="expense-list-header">Expense List: </h1>
                         <button onClick={this.handleToggleNewForm}>Create New Expense</button>
                     </div>
