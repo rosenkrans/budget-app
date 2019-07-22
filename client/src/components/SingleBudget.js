@@ -20,10 +20,6 @@ export default class SingleBudget extends Component {
             .then(() => {
                 axios.get(`/api/budgets/${this.props.match.params.budgetId}/expenses`)
             })
-            // .then((expenses) => {
-            //     console.log(expenses)
-            //     this.setState({expenses: expenses.data})
-            // })
     }
 
     handleInputChange = (event) => {
@@ -79,7 +75,6 @@ export default class SingleBudget extends Component {
             </form>
 
             :<div>
-                {/* <button >Home</button> */}
                 <a href='/'>Home</a>
                 <button onClick={this.handleToggleEditForm}>Edit Budget</button>
                 <button onClick={this.handleDeleteBudget}>Delete Budget</button>
@@ -87,7 +82,6 @@ export default class SingleBudget extends Component {
                 
                 <div>
                     <Expenses 
-                        // expenses={this.state.expenses}
                         budgetId={this.props.match.params.budgetId}
                     />
                 </div>
