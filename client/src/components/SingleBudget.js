@@ -81,7 +81,7 @@ export default class SingleBudget extends Component {
                 <h2>{this.state.budget.name} Budget</h2>
                 
                 <div>
-                    <Expenses />
+                    {/* <Expenses /> */}
                 </div>
             </div>
         )

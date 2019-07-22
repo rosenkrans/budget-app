@@ -67,33 +67,6 @@ export default class Budgets extends Component {
                         value={this.state.newBudget.name}
                     />
 
-                    {/* <label htmlFor="expense-name">Expense Name: </label>
-                    <input 
-                        type="text" 
-                        id="expense-name" 
-                        name="expenseName" 
-                        onChange={this.handleInputChange} 
-                        value={this.state.newBudget.expenseName}
-                    />
-
-                    <label htmlFor="estimated-amount">Estimated Amount: </label>
-                    <input 
-                        type="text" 
-                        id="estimated-amount" 
-                        name="estimatedAmount" 
-                        onChange={this.handleInputChange} 
-                        value={this.state.newBudget.estimatedAmount}
-                    />
-
-                    <label htmlFor="actual-paid-amount">Actual Paid Amount: </label>
-                    <input 
-                        type="text" 
-                        id="actual-paid-amount" 
-                        name="actualPaidAmount" 
-                        onChange={this.handleInputChange} 
-                        value={this.state.newBudget.actualPaidAmount}
-                    /> */}
-
                     <input type="submit" value="Add Budget" />
                 </form>
 
@@ -110,3 +83,4 @@ export default class Budgets extends Component {
         )
     }
 }
+

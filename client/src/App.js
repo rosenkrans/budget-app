@@ -12,7 +12,9 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={Budgets} />
-          <Route path="/budgets/:budgetId" component={SingleBudget} />         
+          <Route path="/budgets/:budgetId" component={SingleBudget} /> 
+          {/* <Route path="/budgets/:budgetId/expenses" component={Expenses} />
+          <Route path="/budgets/:budgetId/expenses/:expenseId" component={SingleExpense} />       */}
           <Route path="/expenses/:expenseId" component={SingleExpense} />
           <Route path="/expenses" component={Expenses} />
         </Switch>
