@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { Redirect, Link } from 'react-router-dom'
 import Expenses from './Expenses.js'
+import SimpleTable from './SimpleTable.js'
 
 export default class SingleBudget extends Component {
 
     state = {
         budget: {},
-        // expenses: [],
         isEditFormDisplayed: false, 
         redirectToHome: false
     }
@@ -86,6 +86,11 @@ export default class SingleBudget extends Component {
                 
                 <div>
                     <Expenses 
+                        budgetId={this.props.match.params.budgetId}
+                    />
+                </div>
+                <div>
+                    <SimpleTable 
                         budgetId={this.props.match.params.budgetId}
                     />
                 </div>
