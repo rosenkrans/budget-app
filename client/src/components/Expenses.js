@@ -100,7 +100,7 @@ export default class Expenses extends Component {
                     </div>
                     
                     <div id="expense-list">
-                        {expensesList}
+                        {/* {expensesList} */}
                     </div>
                 </div>
         )

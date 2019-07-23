@@ -9,7 +9,6 @@ import Paper from '@material-ui/core/Paper';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-
 const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
@@ -24,7 +23,13 @@ const useStyles = makeStyles(theme => ({
 export default class SimpleTable extends Component {
   
   state={
-    expenses: []
+    expenses: [],
+    newExpense: {
+      expenseName: '',
+      estimatedAmount: '',
+      actualPaidAmount: ''
+    },
+    isNewFormDisplayed: false
   }
 
   getAllExpensesByBudgetId = () => {
@@ -36,6 +41,36 @@ export default class SimpleTable extends Component {
 
   componentDidMount() {
     this.getAllExpensesByBudgetId()
+  }
+
+  getAllExpenses = () => {
+    axios.get(`/api/budgets/${this.props.budgetId}/expenses`)
+            .then((res) => {
+                console.log(res.data)
+                this.setState({expenses: res.data})
+        })
+  }
+
+  handleToggleNewForm = () => {
+    this.setState((state) => {
+        return {isNewFormDisplayed: !state.isNewFormDisplayed}
+    })
+  }
+
+  handleInputChange = (event) => {
+      const copiedExpense = {...this.state.newExpense}
+      copiedExpense[event.target.name] = event.target.value 
+
+      this.setState({newExpense: copiedExpense})
+  }
+
+  handleSubmit = (event) => {
+      event.preventDefault()       
+      axios.post(`/api/budgets/${this.props.budgetId}/expenses`, this.state.newExpense)
+          .then(() => {
+              this.setState({isNewFormDisplayed: false})
+              this.getAllExpenses() 
+          })
   }
 
   render(){
@@ -50,23 +85,25 @@ export default class SimpleTable extends Component {
         </TableRow>
       )
     })
-  return (
-    <Paper>
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell>Expense Name</TableCell>
-            <TableCell align="right">Date Due</TableCell>
-            <TableCell align="right">Estimated Amount</TableCell>
-            <TableCell align="right">Date Paid</TableCell>
-            <TableCell align="right">Amount Paid</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {expensesList}
-        </TableBody>
-      </Table>
-    </Paper>
-  );
-}
+
+    return (
+      <Paper>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Expense Name</TableCell>
+              <TableCell align="right">Date Due</TableCell>
+              <TableCell align="right">Estimated Amount</TableCell>
+              <TableCell align="right">Date Paid</TableCell>
+              <TableCell align="right">Amount Paid</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {expensesList}
+          </TableBody>
+        </Table>
+      </Paper>
+    )
+    
+  }
 }
