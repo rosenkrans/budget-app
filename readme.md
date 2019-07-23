@@ -29,7 +29,7 @@ My Project 3 is a budgeting app.
 ![erd](images/proj3erd.jpg)
 
 ## Wireframe:
-
+![erd](images/proj3wireframe.jpg)
 
 ## Cited Code:
 * 
