@@ -23,13 +23,7 @@ const useStyles = makeStyles(theme => ({
 export default class SimpleTable extends Component {
   
   state={
-    expenses: [],
-    newExpense: {
-      expenseName: '',
-      estimatedAmount: '',
-      actualPaidAmount: ''
-    },
-    isNewFormDisplayed: false
+    expenses: []
   }
 
   getAllExpensesByBudgetId = () => {
@@ -41,36 +35,6 @@ export default class SimpleTable extends Component {
 
   componentDidMount() {
     this.getAllExpensesByBudgetId()
-  }
-
-  getAllExpenses = () => {
-    axios.get(`/api/budgets/${this.props.budgetId}/expenses`)
-            .then((res) => {
-                console.log(res.data)
-                this.setState({expenses: res.data})
-        })
-  }
-
-  handleToggleNewForm = () => {
-    this.setState((state) => {
-        return {isNewFormDisplayed: !state.isNewFormDisplayed}
-    })
-  }
-
-  handleInputChange = (event) => {
-      const copiedExpense = {...this.state.newExpense}
-      copiedExpense[event.target.name] = event.target.value 
-
-      this.setState({newExpense: copiedExpense})
-  }
-
-  handleSubmit = (event) => {
-      event.preventDefault()       
-      axios.post(`/api/budgets/${this.props.budgetId}/expenses`, this.state.newExpense)
-          .then(() => {
-              this.setState({isNewFormDisplayed: false})
-              this.getAllExpenses() 
-          })
   }
 
   render(){
@@ -105,5 +69,8 @@ export default class SimpleTable extends Component {
       </Paper>
     )
     
+    
+
   }
+  
 }
