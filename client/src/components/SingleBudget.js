@@ -84,14 +84,15 @@ export default class SingleBudget extends Component {
                 </div>
                 <h2>{this.state.budget.name} Budget</h2>
                 
-                <div>
+                {/* <div>
                     <Expenses 
                         budgetId={this.props.match.params.budgetId}
                     />
-                </div>
+                </div> */}
                 <div>
                     <SimpleTable 
                         budgetId={this.props.match.params.budgetId}
+                        
                     />
                 </div>
             </div>
