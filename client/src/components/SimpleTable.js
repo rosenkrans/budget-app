@@ -47,23 +47,23 @@ export default class SimpleTable extends Component {
     this.setState((state) => {
         return {isNewFormDisplayed: !state.isNewFormDisplayed}
     })
-}
+  }
 
-handleInputChange = (event) => {
-    const copiedExpense = {...this.state.newExpense}
-    copiedExpense[event.target.name] = event.target.value 
+  handleInputChange = (event) => {
+      const copiedExpense = {...this.state.newExpense}
+      copiedExpense[event.target.name] = event.target.value 
 
-    this.setState({newExpense: copiedExpense})
-}
+      this.setState({newExpense: copiedExpense})
+  }
 
-handleSubmit = (event) => {
-    event.preventDefault()       
-    axios.post(`/api/budgets/${this.props.budgetId}/expenses`, this.state.newExpense)
-        .then(() => {
-            this.setState({isNewFormDisplayed: false})
-            this.getAllExpensesByBudgetId() 
-        })
-}
+  handleSubmit = (event) => {
+      event.preventDefault()       
+      axios.post(`/api/budgets/${this.props.budgetId}/expenses`, this.state.newExpense)
+          .then(() => {
+              this.setState({isNewFormDisplayed: false})
+              this.getAllExpensesByBudgetId() 
+          })
+  }
 
   render(){
     const expensesList=this.state.expenses.map((expense) => {
@@ -80,38 +80,37 @@ handleSubmit = (event) => {
 
     return (
       <div>
+        {this.state.isNewFormDisplayed
+            ? <form onSubmit={this.handleSubmit}>
+                <label htmlFor="expense-name">Expense Name: </label>
+                <input 
+                    type="text" 
+                    name="expenseName" 
+                    id="expense-name" 
+                    onChange={this.handleInputChange} 
+                    value={this.state.newExpense.expenseName}
+                />
 
-            {this.state.isNewFormDisplayed
-                ? <form onSubmit={this.handleSubmit}>
-                    <label htmlFor="expense-name">Expense Name: </label>
-                    <input 
-                        type="text" 
-                        name="expenseName" 
-                        id="expense-name" 
-                        onChange={this.handleInputChange} 
-                        value={this.state.newExpense.expenseName}
-                    />
+                <label htmlFor="estimated-amount">Estimated Amount: </label>
+                <input 
+                    type="text" 
+                    name="estimatedAmount" 
+                    id="estimated-amount" 
+                    onChange={this.handleInputChange} 
+                    value={this.state.newExpense.estimatedAmount}
+                />
 
-                    <label htmlFor="estimated-amount">Estimated Amount: </label>
-                    <input 
-                        type="text" 
-                        name="estimatedAmount" 
-                        id="estimated-amount" 
-                        onChange={this.handleInputChange} 
-                        value={this.state.newExpense.estimatedAmount}
-                    />
+                <label htmlFor="actual-paid-amount">Actual Paid Amount: </label>
+                <input 
+                    type="text" 
+                    name="actualPaidAmount" 
+                    id="actual-paid-amount" 
+                    onChange={this.handleInputChange} 
+                    value={this.state.newExpense.actualPaidAmount}
+                />
 
-                    <label htmlFor="actual-paid-amount">Actual Paid Amount: </label>
-                    <input 
-                        type="text" 
-                        name="actualPaidAmount" 
-                        id="actual-paid-amount" 
-                        onChange={this.handleInputChange} 
-                        value={this.state.newExpense.actualPaidAmount}
-                    />
-
-                    <input type="submit" value="Add Expense" />
-                </form>
+                <input type="submit" value="Add Expense" />
+              </form>
 
                 :<div>
                     <div>
@@ -124,24 +123,22 @@ handleSubmit = (event) => {
                     </div>
                 </div>}
 
-      <Paper>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>Expense Name</TableCell>
-              <TableCell align="right">Date Due</TableCell>
-              <TableCell align="right">Estimated Amount</TableCell>
-              <TableCell align="right">Date Paid</TableCell>
-              <TableCell align="right">Amount Paid</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {expensesList}
-          </TableBody>
-        </Table>
-      </Paper>
-
-      
+        <Paper>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>Expense Name</TableCell>
+                <TableCell align="right">Date Due</TableCell>
+                <TableCell align="right">Estimated Amount</TableCell>
+                <TableCell align="right">Date Paid</TableCell>
+                <TableCell align="right">Amount Paid</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {expensesList}
+            </TableBody>
+          </Table>
+        </Paper>
       </div>
     )
   } 
