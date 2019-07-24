@@ -1,4 +1,4 @@
-# Band App
+# Budget App
 My Project 3 is a budgeting app. 
 
 ## Links
