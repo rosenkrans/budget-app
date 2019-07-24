@@ -28,6 +28,7 @@ expenseRouter.post('/', (req, res) => {
   req.body.budgetId = req.params.budgetId
   expenseApi.addNewExpense(req.body) 
     .then((expense) => {
+      console.log(dueDate)
       res.json(expense) 
     })
     .catch((err) => {

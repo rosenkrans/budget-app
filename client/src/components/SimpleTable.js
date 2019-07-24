@@ -27,7 +27,9 @@ export default class SimpleTable extends Component {
     newExpense: {
         expenseName: '',
         estimatedAmount: '',
-        actualPaidAmount: ''
+        actualPaidAmount: '',
+        dueDate: '',
+        paidDate: ''
     },
     isNewFormDisplayed: false
 }
@@ -70,9 +72,9 @@ export default class SimpleTable extends Component {
       return(
         <TableRow>
           <TableCell><Link to={`/budgets/${this.props.budgetId}/expenses/${expense._id}`}>{expense.expenseName}</Link></TableCell>
-          <TableCell align="right">Date Due</TableCell>
+          <TableCell align="right">{expense.dueDate}</TableCell>
           <TableCell align="right">{expense.estimatedAmount}</TableCell>
-          <TableCell align="right">Date Paid</TableCell>
+          <TableCell align="right">{expense.paidDate}</TableCell>
           <TableCell align="right">{expense.actualPaidAmount}</TableCell>
         </TableRow>
       )
@@ -91,6 +93,15 @@ export default class SimpleTable extends Component {
                     value={this.state.newExpense.expenseName}
                 />
 
+                <label htmlFor="due-date">Due Date: </label>
+                <input 
+                    type="date" 
+                    name="dueDate" 
+                    id="due-date" 
+                    onChange={this.handleInputChange} 
+                    value={this.state.newExpense.dueDate}
+                />
+
                 <label htmlFor="estimated-amount">Estimated Amount: </label>
                 <input 
                     type="text" 
@@ -98,6 +109,15 @@ export default class SimpleTable extends Component {
                     id="estimated-amount" 
                     onChange={this.handleInputChange} 
                     value={this.state.newExpense.estimatedAmount}
+                />
+
+                <label htmlFor="paid-date">Paid Date: </label>
+                <input 
+                    type="date" 
+                    name="paidDate" 
+                    id="paid-date" 
+                    onChange={this.handleInputChange} 
+                    value={this.state.newExpense.paidDate}
                 />
 
                 <label htmlFor="actual-paid-amount">Actual Paid Amount: </label>
@@ -115,11 +135,6 @@ export default class SimpleTable extends Component {
                 :<div>
                     <div>
                         <button class="button" onClick={this.handleToggleNewForm}>Create New Expense</button>
-                        {/* <h2 className="expense-list-header">Expense List: </h2>                       */}
-                    </div>
-                    
-                    <div id="expense-list">
-                        {/* {expensesList} */}
                     </div>
                 </div>}
 

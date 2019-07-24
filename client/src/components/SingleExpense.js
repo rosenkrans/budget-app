@@ -65,6 +65,15 @@ export default class SingleExpense extends Component {
                     value={this.state.expense.expenseName}
                 />
 
+                <label htmlFor="due-date">Due Date: </label>
+                <input 
+                    type="date" 
+                    name="dueDate" 
+                    id="due-date" 
+                    onChange={this.handleInputChange} 
+                    value={this.state.expense.dueDate}
+                />
+
                 <label htmlFor="estimated-amount">Estimated Amount: </label>
                 <input 
                     type="text" 
@@ -72,6 +81,15 @@ export default class SingleExpense extends Component {
                     name="estimatedAmount" 
                     onChange={this.handleInputChange} 
                     value={this.state.expense.estimatedAmount}
+                />
+
+                <label htmlFor="paid-date">Paid Date: </label>
+                <input 
+                    type="date" 
+                    name="paidDate" 
+                    id="paid-date" 
+                    onChange={this.handleInputChange} 
+                    value={this.state.expense.paidDate}
                 />
 
                 <label htmlFor="actual-paid-amount">Actual Paid Amount: </label>
@@ -95,7 +113,9 @@ export default class SingleExpense extends Component {
                     <button class="button" onClick={this.handleDeleteExpense}>Delete Expense</button>
                 </div>
                 <h3>Expense: {this.state.expense.expenseName}</h3>
+                <h3>Due Date: {this.state.expense.dueDate}</h3>
                 <h3>Estimated Amount: {this.state.expense.estimatedAmount}</h3>
+                <h3>Paid Date: {this.state.expense.paidDate}</h3>
                 <h3>Actual Amount Paid: {this.state.expense.actualPaidAmount}</h3>      
             </div>
         )

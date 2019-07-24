@@ -5,6 +5,8 @@ const ExpenseSchema = new mongoose.Schema({
  expenseName: String,
  estimatedAmount: Number,
  actualPaidAmount: Number,
+ dueDate: String,
+ paidDate: String,
  budgetId: mongoose.Types.ObjectId
 })
 
