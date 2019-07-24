@@ -22,9 +22,15 @@ const useStyles = makeStyles(theme => ({
 
 export default class SimpleTable extends Component {
   
-  state={
-    expenses: []
-  }
+  state = {
+    expenses: [],
+    newExpense: {
+        expenseName: '',
+        estimatedAmount: '',
+        actualPaidAmount: ''
+    },
+    isNewFormDisplayed: false
+}
 
   getAllExpensesByBudgetId = () => {
     axios.get(`/api/budgets/${this.props.budgetId}/expenses`)
@@ -36,6 +42,28 @@ export default class SimpleTable extends Component {
   componentDidMount() {
     this.getAllExpensesByBudgetId()
   }
+
+  handleToggleNewForm = () => {
+    this.setState((state) => {
+        return {isNewFormDisplayed: !state.isNewFormDisplayed}
+    })
+}
+
+handleInputChange = (event) => {
+    const copiedExpense = {...this.state.newExpense}
+    copiedExpense[event.target.name] = event.target.value 
+
+    this.setState({newExpense: copiedExpense})
+}
+
+handleSubmit = (event) => {
+    event.preventDefault()       
+    axios.post(`/api/budgets/${this.props.budgetId}/expenses`, this.state.newExpense)
+        .then(() => {
+            this.setState({isNewFormDisplayed: false})
+            this.getAllExpensesByBudgetId() 
+        })
+}
 
   render(){
     const expensesList=this.state.expenses.map((expense) => {
@@ -51,6 +79,51 @@ export default class SimpleTable extends Component {
     })
 
     return (
+      <div>
+
+            {this.state.isNewFormDisplayed
+                ? <form onSubmit={this.handleSubmit}>
+                    <label htmlFor="expense-name">Expense Name: </label>
+                    <input 
+                        type="text" 
+                        name="expenseName" 
+                        id="expense-name" 
+                        onChange={this.handleInputChange} 
+                        value={this.state.newExpense.expenseName}
+                    />
+
+                    <label htmlFor="estimated-amount">Estimated Amount: </label>
+                    <input 
+                        type="text" 
+                        name="estimatedAmount" 
+                        id="estimated-amount" 
+                        onChange={this.handleInputChange} 
+                        value={this.state.newExpense.estimatedAmount}
+                    />
+
+                    <label htmlFor="actual-paid-amount">Actual Paid Amount: </label>
+                    <input 
+                        type="text" 
+                        name="actualPaidAmount" 
+                        id="actual-paid-amount" 
+                        onChange={this.handleInputChange} 
+                        value={this.state.newExpense.actualPaidAmount}
+                    />
+
+                    <input type="submit" value="Add Expense" />
+                </form>
+
+                :<div>
+                    <div>
+                        <button class="button" onClick={this.handleToggleNewForm}>Create New Expense</button>
+                        {/* <h2 className="expense-list-header">Expense List: </h2>                       */}
+                    </div>
+                    
+                    <div id="expense-list">
+                        {/* {expensesList} */}
+                    </div>
+                </div>}
+
       <Paper>
         <Table>
           <TableHead>
@@ -67,10 +140,12 @@ export default class SimpleTable extends Component {
           </TableBody>
         </Table>
       </Paper>
-    )
-    
-    
 
-  }
-  
+      
+      </div>
+    )
+  } 
 }
+
+
+
