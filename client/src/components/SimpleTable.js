@@ -62,8 +62,14 @@ export default class SimpleTable extends Component {
       event.preventDefault()       
       axios.post(`/api/budgets/${this.props.budgetId}/expenses`, this.state.newExpense)
           .then(() => {
-              this.setState({isNewFormDisplayed: false})
-              this.getAllExpensesByBudgetId() 
+            this.setState({isNewFormDisplayed: false, newExpense: {
+              expenseName: '',
+              estimatedAmount: '',
+              actualPaidAmount: '',
+              dueDate: '',
+              paidDate: ''
+            }})
+            this.getAllExpensesByBudgetId() 
           })
   }
 
