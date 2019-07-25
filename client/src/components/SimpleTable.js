@@ -7,6 +7,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { Link } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
+import Icon from '@material-ui/core/Icon';
 import axios from 'axios';
 
 const useStyles = makeStyles(theme => ({
@@ -140,7 +142,12 @@ export default class SimpleTable extends Component {
 
                 :<div>
                     <div>
-                        <button class="button" onClick={this.handleToggleNewForm}>Create New Expense</button>
+                        <Button variant="contained" color="secondary" onClick={this.handleToggleNewForm}>Create New Expense</Button>
+                        {/* <Button variant="contained" color="primary" className={classes.button}>
+                        Send
+                
+                        <Icon className={classes.rightIcon}>send</Icon>
+                      </Button> */}
                     </div>
                 </div>}
 
