@@ -1,13 +1,37 @@
 body {
   background-color: #DFC0FF;
+  /* text-align: center; */
+}
+
+.button {
+  background-color: purple;
+  color: white;
+  width: 150px;
+  border-radius: 7px;
+}
+
+.single-budget-content {
   text-align: center;
 }
 
-/* .button {
-  width: 150px;
-} */
-
 .single-budget-buttons {
+  margin-top: 5px;
+}
+
+.edit-budget-name-button {
+  background-color: purple;
+  color: white;
+  width: 150px;
+  border-radius: 7px;
+  float: right;
+}
+
+.budget-delete-button {
+  background-color: purple;
+  color: white;
+  width: 150px;
+  border-radius: 7px;
+  float: right;
   margin-top: 20px;
 }
 
@@ -15,3 +39,10 @@ body {
   margin-top: 20px;
 }
 
+.create-expense-button {
+  background-color: purple;
+  color: white;
+  width: 150px;
+  border-radius: 7px;
+  margin-bottom: 5px;
+}

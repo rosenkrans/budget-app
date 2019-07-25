@@ -76,24 +76,25 @@ export default class SingleBudget extends Component {
 
             :<div>
                 <div>
+                    
+                </div>
                     <a href='/'>Home</a>
-                </div>
-                <div class="single-budget-buttons">
-                    <button class="button" onClick={this.handleToggleEditForm}>Edit Budget Name</button>
-                    <button class="button" onClick={this.handleDeleteBudget}>Delete Budget</button>
-                </div>
-                <h2>{this.state.budget.name} Budget</h2>
-                
-                <div>
-                    {/* <Expenses 
-                        budgetId={this.props.match.params.budgetId}
-                    /> */}
-                </div>
-                <div>
-                    <SimpleTable 
-                        budgetId={this.props.match.params.budgetId}
-                    />
-                </div>
+                    <button class="edit-budget-name-button" onClick={this.handleToggleEditForm}>Edit Budget Name</button>
+                    <div class="single-budget-buttons">
+                        
+                        
+                    </div>
+                    <div className="single-budget-content">
+                    <h2>{this.state.budget.name} Budget</h2>
+                    
+                    <div>
+                        <SimpleTable 
+                            budgetId={this.props.match.params.budgetId}
+                        />
+                    </div>
+                </div>   
+                    <button class="budget-delete-button" onClick={this.handleDeleteBudget}>Delete Budget</button>
+                     
             </div>
         )
     }
