@@ -26,10 +26,10 @@ My Project 3 is a budgeting app.
 * View list of items in a budget
 
 ## ERD:
-![erd](images/proj3erd.jpg)
+![erd](src/images/proj3erd.jpg)
 
 ## Wireframe:
-![erd](images/proj3wireframe.jpg)
+![erd](src/images/proj3wireframe.jpg)
 
 ## Cited Code:
 * 
