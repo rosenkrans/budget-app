@@ -101,23 +101,30 @@ export default class SingleExpense extends Component {
                     value={this.state.expense.actualPaidAmount}
                 />
 
-                <input type="submit" value="Update Expense" />
+                <input className="edit-submit-button" type="submit" value="Update Expense" />
             </form>
 
             :<div>
                 <div>
                     <Link to={`/budgets/${this.props.match.params.budgetId}`}>Back to Budget</Link>
                 </div>
-                <div class="single-expense-buttons">
-                    <button class="button" onClick={this.handleToggleEditForm}>Edit Expense</button>
-                    <button class="button" onClick={this.handleDeleteExpense}>Delete Expense</button>
+                <div className="single-expense-content">
+                    <div class="single-expense-buttons">
+                        <button class="button" onClick={this.handleToggleEditForm}>Edit Expense</button>
+                        <button class="button" onClick={this.handleDeleteExpense}>Delete Expense</button>
+                    </div>
+                    <h3>Expense: {this.state.expense.expenseName}</h3>
+                    <h3>Due Date: {this.state.expense.dueDate}</h3>
+                    <h3>Estimated Amount: {this.state.expense.estimatedAmount}</h3>
+                    <h3>Paid Date: {this.state.expense.paidDate}</h3>
+                    <h3>Actual Amount Paid: {this.state.expense.actualPaidAmount}</h3>      
                 </div>
-                <h3>Expense: {this.state.expense.expenseName}</h3>
-                <h3>Due Date: {this.state.expense.dueDate}</h3>
-                <h3>Estimated Amount: {this.state.expense.estimatedAmount}</h3>
-                <h3>Paid Date: {this.state.expense.paidDate}</h3>
-                <h3>Actual Amount Paid: {this.state.expense.actualPaidAmount}</h3>      
             </div>
         )
     }
 }
+
+
+
+
+

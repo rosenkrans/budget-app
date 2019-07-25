@@ -136,7 +136,7 @@ export default class SimpleTable extends Component {
                     value={this.state.newExpense.actualPaidAmount}
                 />
 
-                <input type="submit" value="Add Expense" />
+                <input className="edit-submit-button" type="submit" value="Add Expense" />
               </form>
 
                 :<div>

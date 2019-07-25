@@ -50,7 +50,7 @@ export default class Budgets extends Component {
             console.log(budget)
             return (
                 <div>
-                    <Link key={budget._id} to={`/budgets/${budget._id}`}>{budget.name}</Link>
+                    <Link style={{color:'white'}} key={budget._id} to={`/budgets/${budget._id}`}>{budget.name}</Link>
                 </div>
             )
         })
@@ -67,17 +67,22 @@ export default class Budgets extends Component {
                         value={this.state.newBudget.name}
                     />
 
-                    <input type="submit" value="Add Budget" />
+                    <input className="edit-submit-button" type="submit" value="Add Budget" />
                 </form>
 
-                :<div>
+                :<div className="budget-list-body" id="budget-list-body">
                     <div>
-                        <button class="create-budget-button" onClick={this.handleToggleNewForm}>Create New Budget</button>
-                        <h1 className="budget-list-header">List of Budgets </h1>                       
-                    </div>
-                    
-                    <div id="budget-list">
-                        {budgetsList}
+                        <div>
+                            <button 
+                                className="create-budget-button" 
+                                onClick={this.handleToggleNewForm}>Create New Budget
+                            </button>
+                            <h1 className="budget-list-header">List of Budgets </h1>                       
+                        </div>
+                        
+                        <div id="budget-list">                       
+                            {budgetsList}                        
+                        </div>
                     </div>
                 </div>
         )

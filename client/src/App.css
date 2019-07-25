@@ -3,6 +3,36 @@ body {
   /* text-align: center; */
 }
 
+#budget-list-body {
+  background-image: url('./images/stevenuniverse3.jpg');
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+  top: 0;
+  bottom: 0;
+  height: 100vh;
+}
+
+.budget-list-body {
+  text-align: center;
+}
+
+.create-budget-button {
+  background-color: white;
+  color: purple;
+  width: 150px;
+  border-radius: 7px;
+  margin-top: 10px;
+}
+
+.budget-list-header {
+  color: white;
+}
+
+.budget-list {
+  color: white;
+}
+
 .button {
   background-color: purple;
   color: white;
@@ -26,6 +56,10 @@ body {
   float: right;
 }
 
+.edit-budget-form {
+  text-align: center;
+}
+
 .budget-delete-button {
   background-color: purple;
   color: white;
@@ -33,6 +67,18 @@ body {
   border-radius: 7px;
   float: right;
   margin-top: 20px;
+}
+
+.edit-submit-button {
+  background-color: purple;
+  color: white;
+  width: 150px;
+  border-radius: 7px;
+  margin-top: 20px;
+}
+
+.single-expense-content {
+  text-align: center;
 }
 
 .single-expense-buttons {
@@ -46,3 +92,7 @@ body {
   border-radius: 7px;
   margin-bottom: 5px;
 }
+
+
+
+

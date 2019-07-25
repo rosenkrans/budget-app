@@ -62,16 +62,18 @@ export default class SingleBudget extends Component {
             this.state.isEditFormDisplayed
             ? <form onSubmit={this.handleSubmit}>
                 <a href='/'>Home</a>
-                <label htmlFor="budget-name">Budget Name: </label>
-                <input 
-                    type="text" 
-                    id="budget-name" 
-                    name="name" 
-                    onChange={this.handleInputChange} 
-                    value={this.state.budget.name}
-                />
+                <div className="edit-budget-form">
+                    <label htmlFor="budget-name">Budget Name: </label>
+                    <input 
+                        type="text" 
+                        id="budget-name" 
+                        name="name" 
+                        onChange={this.handleInputChange} 
+                        value={this.state.budget.name}
+                    />
 
-                <input type="submit" value="Update Budget" />
+                    <input className="edit-submit-button" type="submit" value="Update Budget" />
+                </div>
             </form>
 
             :<div>
