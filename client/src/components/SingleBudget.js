@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { Redirect, Link } from 'react-router-dom'
 import Expenses from './Expenses.js'
+import clsx from 'clsx';
+import { makeStyles } from '@material-ui/core/styles';
+import MenuItem from '@material-ui/core/MenuItem';
+import TextField from '@material-ui/core/TextField';
 // import Steven3 from '../images/steven3.png';
 
 export default class SingleBudget extends Component {
@@ -60,7 +64,7 @@ export default class SingleBudget extends Component {
         }
         return (
             this.state.isEditFormDisplayed
-            ? <form onSubmit={this.handleSubmit} id="edit-budget-form">
+            ? <form onSubmit={this.handleSubmit} id="edit-budget-form" >
                 <a href='/'>Home</a>
                 <div className="edit-budget-form">
                     <label htmlFor="budget-name" style={{color:'white'}}>Budget Name: </label>
@@ -71,6 +75,18 @@ export default class SingleBudget extends Component {
                         onChange={this.handleInputChange} 
                         value={this.state.budget.name}
                     />
+
+                    {/* <TextField 
+                        id="budget-name"
+                        label="Budget Name: "
+                        style={{
+                            backgroundColor: "white"
+                        }}
+                        value={this.state.budget.name}
+                        onChange={this.handleInputChange}
+                        margin="normal"
+                        variant="filled"
+                    /> */}
 
                     <input className="edit-submit-button" type="submit" value="Update Budget" />
                 </div>
@@ -94,7 +110,12 @@ export default class SingleBudget extends Component {
                         />
                     </div>
                 </div>   
-                    <button class="budget-delete-button" onClick={this.handleDeleteBudget}>Delete Budget</button>
+                    <button 
+                    class="budget-delete-button" 
+                    onClick={this.handleDeleteBudget}
+                    >
+                        Delete Budget
+                    </button>
                      
             </div>
         )

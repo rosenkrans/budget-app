@@ -60,7 +60,7 @@ export default class Budgets extends Component {
                 ? <form onSubmit={this.handleSubmit} id="create-budget-form">
                     <a href='/'>Home</a>
                     <div className="create-budget-form">
-                        <label htmlFor="new-budget-name">Budget Name: </label>
+                        <label htmlFor="new-budget-name" style={{color:'white'}}>Budget Name: </label>
                         <input
                             type="text"
                             name="name"

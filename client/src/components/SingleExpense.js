@@ -31,9 +31,11 @@ export default class SingleExpense extends Component {
             .then((res) => {
                 this.setState({
                     expense: res.data,
-                    isEditFormDisplayed: false 
+                    isEditFormDisplayed: false,
+                    redirectToHome: true
                 })
             })
+    
     }
 
     handleToggleEditForm = () => {
@@ -66,7 +68,8 @@ export default class SingleExpense extends Component {
                     onChange={this.handleInputChange} 
                     value={this.state.expense.expenseName}
                 />
-
+                </div>
+                <div>
                 <label htmlFor="due-date">Due Date: </label>
                 <input 
                     type="date" 
@@ -75,7 +78,8 @@ export default class SingleExpense extends Component {
                     onChange={this.handleInputChange} 
                     value={this.state.expense.dueDate}
                 />
-
+                </div>
+                <div>
                 <label htmlFor="estimated-amount">Estimated Amount: </label>
                 <input 
                     type="text" 
@@ -95,7 +99,8 @@ export default class SingleExpense extends Component {
                     onChange={this.handleInputChange} 
                     value={this.state.expense.paidDate}
                 />
-
+                </div>
+                <div>
                 <label htmlFor="actual-paid-amount">Actual Paid Amount: </label>
                 <input 
                     type="text" 
@@ -104,8 +109,9 @@ export default class SingleExpense extends Component {
                     onChange={this.handleInputChange} 
                     value={this.state.expense.actualPaidAmount}
                 />
-
+                <div>
                 <input className="edit-submit-button" type="submit" value="Update Expense" />
+                </div>
                 </div>
                 </div>
             </form>

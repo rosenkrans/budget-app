@@ -8,6 +8,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -102,6 +103,19 @@ export default class SimpleTable extends Component {
                       value={this.state.newExpense.expenseName}
                   />
 
+                  {/* <TextField 
+                    id="expense-name"
+                    label="Expense Name: "
+                    style={{
+                        backgroundColor: "white"
+                    }}
+                    value={this.state.newExpense.expenseName}
+                    onChange={this.handleInputChange}
+                    margin="normal"
+                    variant="outlined"
+                  />     */}
+
+
                   <label htmlFor="due-date">Due Date: </label>
                   <input 
                       type="date" 
@@ -110,6 +124,18 @@ export default class SimpleTable extends Component {
                       onChange={this.handleInputChange} 
                       value={this.state.newExpense.dueDate}
                   />
+
+                  {/* <TextField 
+                    id="due-date"
+                    label="Due Date: "
+                    style={{
+                        backgroundColor: "white"
+                    }}
+                    value={this.state.newExpense.dueDate}
+                    onChange={this.handleInputChange}
+                    margin="normal"
+                    variant="outlined"
+                  />   */}
 
                   <label htmlFor="estimated-amount">Estimated Amount: </label>
                   <input 
@@ -121,6 +147,18 @@ export default class SimpleTable extends Component {
                   />
                   </div>
 
+                  {/* <TextField 
+                    id="estimated-amount"
+                    label="Estimated Amount: "
+                    style={{
+                        backgroundColor: "white"
+                    }}
+                    value={this.state.newExpense.estimatedAmount}
+                    onChange={this.handleInputChange}
+                    margin="normal"
+                    variant="outlined"
+                  />   */}
+
                   <label htmlFor="paid-date">Paid Date: </label>
                   <input 
                       type="date" 
@@ -129,6 +167,18 @@ export default class SimpleTable extends Component {
                       onChange={this.handleInputChange} 
                       value={this.state.newExpense.paidDate}
                   />
+
+                  {/* <TextField 
+                    id="paid-date"
+                    label="Paid Date: "
+                    style={{
+                        backgroundColor: "white"
+                    }}
+                    value={this.state.newExpense.paidDate}
+                    onChange={this.handleInputChange}
+                    margin="normal"
+                    variant="outlined"
+                  />   */}
 
                   <label htmlFor="actual-paid-amount">Actual Paid Amount: </label>
                   <input 
@@ -139,10 +189,23 @@ export default class SimpleTable extends Component {
                       value={this.state.newExpense.actualPaidAmount}
                   />
 
+                  {/* <TextField 
+                    id="actual-paid-amount"
+                    label="Actual Paid Amount: "
+                    style={{
+                        backgroundColor: "white"
+                    }}
+                    value={this.state.newExpense.actualPaidAmount}
+                    onChange={this.handleInputChange}
+                    margin="normal"
+                    variant="outlined"
+                  />   */}
+
                   <div>
                   <input className="edit-submit-button" type="submit" value="Add Expense" />
                   </div>
                 </div>
+                {/* </div> */}
               </form>
 
                 :<div>

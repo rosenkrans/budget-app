@@ -63,7 +63,7 @@ body {
 }
 
 #create-budget-form {
-  background-image: url('./images/stevenuniverse1.jpg');
+  background-image: url('./images/stevenuniverse3.jpg');
   background-size: cover;
   background-position: center center;
   position: relative;
@@ -162,6 +162,12 @@ body {
 .edit-expense-form {
   text-align: center;
   color: white;
+  
+}
+
+#expense-name {
+  margin-top: 25px;
+  
 }
 
 #edit-expense-form {
