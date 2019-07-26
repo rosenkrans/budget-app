@@ -1,108 +1,182 @@
-import React, { Component } from 'react'
-import axios from 'axios'
-import {Link} from 'react-router-dom'
+import React, {Component} from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
-export default class Expenses extends Component {
+const useStyles = makeStyles(theme => ({
+  root: {
+    width: '100%',
+    marginTop: theme.spacing(3),
+    overflowX: 'auto',
+  },
+  table: {
+    minWidth: 650,
+  },
+}));
 
-    state = {
-        expenses: [],
-        newExpense: {
-            expenseName: '',
-            estimatedAmount: '',
-            actualPaidAmount: ''
-        },
-        isNewFormDisplayed: false
-    }
+export default class SimpleTable extends Component {
+  
+  state = {
+    expenses: [],
+    newExpense: {
+        expenseName: '',
+        estimatedAmount: '',
+        actualPaidAmount: '',
+        dueDate: '',
+        paidDate: ''
+    },
+    isNewFormDisplayed: false
+}
 
-    componentDidMount() {
-        this.getAllExpenses()
-    }
+  getAllExpensesByBudgetId = () => {
+    axios.get(`/api/budgets/${this.props.budgetId}/expenses`)
+      .then((res) => {
+        this.setState({expenses: res.data})
+      })
+  }
 
-    getAllExpenses = () => {
-        axios.get(`/api/budgets/${this.props.budgetId}/expenses`)
-                .then((res) => {
-                    console.log(res.data)
-                    this.setState({expenses: res.data})
-            })
-    }
+  componentDidMount() {
+    this.getAllExpensesByBudgetId()
+  }
 
-    handleToggleNewForm = () => {
-        this.setState((state) => {
-            return {isNewFormDisplayed: !state.isNewFormDisplayed}
-        })
-    }
+  handleToggleNewForm = () => {
+    this.setState((state) => {
+        return {isNewFormDisplayed: !state.isNewFormDisplayed}
+    })
+  }
 
-    handleInputChange = (event) => {
-        const copiedExpense = {...this.state.newExpense}
-        copiedExpense[event.target.name] = event.target.value 
+  handleInputChange = (event) => {
+      const copiedExpense = {...this.state.newExpense}
+      copiedExpense[event.target.name] = event.target.value 
 
-        this.setState({newExpense: copiedExpense})
-    }
+      this.setState({newExpense: copiedExpense})
+  }
 
-    handleSubmit = (event) => {
-        event.preventDefault()       
-        axios.post(`/api/budgets/${this.props.budgetId}/expenses`, this.state.newExpense)
-            .then(() => {
-                this.setState({isNewFormDisplayed: false})
-                this.getAllExpenses() 
-            })
-    }
+  handleSubmit = (event) => {
+      event.preventDefault()       
+      axios.post(`/api/budgets/${this.props.budgetId}/expenses`, this.state.newExpense)
+          .then(() => {
+            this.setState({isNewFormDisplayed: false, newExpense: {
+              expenseName: '',
+              estimatedAmount: '',
+              actualPaidAmount: '',
+              dueDate: '',
+              paidDate: ''
+            }})
+            this.getAllExpensesByBudgetId() 
+          })
+  }
 
-    render() {
-        let expensesList = this.state.expenses.map((expense) => {
-            console.log(expense)
-            return (
-                <div>
-                    <Link key={expense._id} to={`/budgets/${this.props.budgetId}/expenses/${expense._id}`}>{expense.expenseName}</Link>
-                    <p>Estimated Amount: {expense.estimatedAmount}</p>
-                    <p>Actual Amount Paid: {expense.actualPaidAmount}</p>   
+  render(){
+    const expensesList=this.state.expenses.map((expense) => {
+      return(
+        <TableRow>
+          <TableCell><Link to={`/budgets/${this.props.budgetId}/expenses/${expense._id}`}>{expense.expenseName}</Link></TableCell>
+          <TableCell align="right">{expense.dueDate}</TableCell>
+          <TableCell align="right">{expense.estimatedAmount}</TableCell>
+          <TableCell align="right">{expense.paidDate}</TableCell>
+          <TableCell align="right">{expense.actualPaidAmount}</TableCell>
+        </TableRow>
+      )
+    })
+
+    return (
+      <div>
+        {this.state.isNewFormDisplayed
+            ? <form onSubmit={this.handleSubmit}>
+
+                <div className="new-expense-form">
+                  <div className="expense-name-due-est">
+                  <label htmlFor="expense-name">Expense Name: </label>
+                  <input 
+                      type="text" 
+                      name="expenseName" 
+                      id="expense-name" 
+                      onChange={this.handleInputChange} 
+                      value={this.state.newExpense.expenseName}
+                  />
+
+                  <label htmlFor="due-date">Due Date: </label>
+                  <input 
+                      type="date" 
+                      name="dueDate" 
+                      id="due-date" 
+                      onChange={this.handleInputChange} 
+                      value={this.state.newExpense.dueDate}
+                  />
+
+                  <label htmlFor="estimated-amount">Estimated Amount: </label>
+                  <input 
+                      type="text" 
+                      name="estimatedAmount" 
+                      id="estimated-amount" 
+                      onChange={this.handleInputChange} 
+                      value={this.state.newExpense.estimatedAmount}
+                  />
+                  </div>
+
+                  <label htmlFor="paid-date">Paid Date: </label>
+                  <input 
+                      type="date" 
+                      name="paidDate" 
+                      id="paid-date" 
+                      onChange={this.handleInputChange} 
+                      value={this.state.newExpense.paidDate}
+                  />
+
+                  <label htmlFor="actual-paid-amount">Actual Paid Amount: </label>
+                  <input 
+                      type="text" 
+                      name="actualPaidAmount" 
+                      id="actual-paid-amount" 
+                      onChange={this.handleInputChange} 
+                      value={this.state.newExpense.actualPaidAmount}
+                  />
+
+                  <div>
+                  <input className="edit-submit-button" type="submit" value="Add Expense" />
+                  </div>
                 </div>
-            )
-        })
-
-        return (
-            this.state.isNewFormDisplayed
-                ? <form onSubmit={this.handleSubmit}>
-                    <label htmlFor="expense-name">Expense Name: </label>
-                    <input 
-                        type="text" 
-                        name="expenseName" 
-                        id="expense-name" 
-                        onChange={this.handleInputChange} 
-                        value={this.state.newExpense.expenseName}
-                    />
-
-                    <label htmlFor="estimated-amount">Estimated Amount: </label>
-                    <input 
-                        type="text" 
-                        name="estimatedAmount" 
-                        id="estimated-amount" 
-                        onChange={this.handleInputChange} 
-                        value={this.state.newExpense.estimatedAmount}
-                    />
-
-                    <label htmlFor="actual-paid-amount">Actual Paid Amount: </label>
-                    <input 
-                        type="text" 
-                        name="actualPaidAmount" 
-                        id="actual-paid-amount" 
-                        onChange={this.handleInputChange} 
-                        value={this.state.newExpense.actualPaidAmount}
-                    />
-
-                    <input type="submit" value="Add Expense" />
-                </form>
+              </form>
 
                 :<div>
                     <div>
-                        <button class="button" onClick={this.handleToggleNewForm}>Create New Expense</button>
-                        {/* <h2 className="expense-list-header">Expense List: </h2>                       */}
-                    </div>
-                    
-                    <div id="expense-list">
-                        {/* {expensesList} */}
+                      <button className="create-expense-button" 
+                        onClick={this.handleToggleNewForm}>
+                        Create New Expense
+                      </button>
                     </div>
                 </div>
-        )
-    }
+        }
+
+        <div className="expense-table">
+        <Paper>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>Expense Name</TableCell>
+                <TableCell align="right">Date Due</TableCell>
+                <TableCell align="right">Estimated Amount</TableCell>
+                <TableCell align="right">Date Paid</TableCell>
+                <TableCell align="right">Amount Paid</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {expensesList}
+            </TableBody>
+          </Table>
+        </Paper>
+        </div>
+      </div>
+    )
+  } 
 }
+
+
+

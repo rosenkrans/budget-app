@@ -57,17 +57,20 @@ export default class Budgets extends Component {
 
         return (
             this.state.isNewFormDisplayed
-                ? <form onSubmit={this.handleSubmit}>
-                    <label htmlFor="new-budget-name">Budget Name</label>
-                    <input
-                        type="text"
-                        name="name"
-                        id="new-budget-name"
-                        onChange={this.handleInputChange}
-                        value={this.state.newBudget.name}
-                    />
+                ? <form onSubmit={this.handleSubmit} id="create-budget-form">
+                    <a href='/'>Home</a>
+                    <div className="create-budget-form">
+                        <label htmlFor="new-budget-name">Budget Name: </label>
+                        <input
+                            type="text"
+                            name="name"
+                            id="new-budget-name"
+                            onChange={this.handleInputChange}
+                            value={this.state.newBudget.name}
+                        />
 
-                    <input className="edit-submit-button" type="submit" value="Add Budget" />
+                        <input className="edit-submit-button" type="submit" value="Add Budget" />
+                    </div>
                 </form>
 
                 :<div className="budget-list-body" id="budget-list-body">

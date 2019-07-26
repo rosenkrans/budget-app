@@ -25,6 +25,10 @@ body {
   margin-top: 10px;
 }
 
+.create-budget-form {
+  text-align: center;
+}
+
 .budget-list-header {
   color: white;
 }
@@ -48,12 +52,42 @@ body {
   margin-top: 5px;
 }
 
+.steven3 {
+  width: 110px;
+  float: left;
+  
+}
+
+.budget-header {
+  margin-top: 50px;
+}
+
+#create-budget-form {
+  background-image: url('./images/stevenuniverse1.jpg');
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+  top: 0;
+  bottom: 0;
+  height: 100vh;
+}
+
 .edit-budget-name-button {
   background-color: purple;
   color: white;
   width: 150px;
   border-radius: 7px;
   float: right;
+}
+
+#edit-budget-form {
+  background-image: url('./images/stevenuniverse2.png');
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+  top: 0;
+  bottom: 0;
+  height: 100vh;
 }
 
 .edit-budget-form {
@@ -77,12 +111,34 @@ body {
   margin-top: 20px;
 }
 
+#expenses-table-view {
+  background-image: url('./images/stevenuniverse3.jpg');
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+  top: 0;
+  bottom: 0;
+  height: 100vh;
+}
+
+.expense-table {
+  /* width: 70%;  */
+}
+
+.expense-name-due-est {
+  margin-bottom: 5px;
+}
+
 .single-expense-content {
   text-align: center;
 }
 
 .single-expense-buttons {
   margin-top: 20px;
+}
+
+.new-expense-form {
+  color: white;
 }
 
 .create-expense-button {
@@ -93,6 +149,15 @@ body {
   margin-bottom: 5px;
 }
 
+#single-expense-content {
+  background-image: url('./images/stevenuniverse6.jpg');
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+  top: 0;
+  bottom: 0;
+  height: 100vh;
+}
 
 
 

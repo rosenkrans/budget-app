@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { Redirect, Link } from 'react-router-dom'
 import Expenses from './Expenses.js'
-import SimpleTable from './SimpleTable.js'
+import Steven3 from '../images/steven3.png';
 
 export default class SingleBudget extends Component {
 
@@ -60,10 +60,10 @@ export default class SingleBudget extends Component {
         }
         return (
             this.state.isEditFormDisplayed
-            ? <form onSubmit={this.handleSubmit}>
+            ? <form onSubmit={this.handleSubmit} id="edit-budget-form">
                 <a href='/'>Home</a>
                 <div className="edit-budget-form">
-                    <label htmlFor="budget-name">Budget Name: </label>
+                    <label htmlFor="budget-name" style={{color:'white'}}>Budget Name: </label>
                     <input 
                         type="text" 
                         id="budget-name" 
@@ -76,21 +76,20 @@ export default class SingleBudget extends Component {
                 </div>
             </form>
 
-            :<div>
+            :<div id="expenses-table-view">
                 <div>
                     
                 </div>
                     <a href='/'>Home</a>
                     <button class="edit-budget-name-button" onClick={this.handleToggleEditForm}>Edit Budget Name</button>
-                    <div class="single-budget-buttons">
-                        
-                        
-                    </div>
+                    <div class="single-budget-buttons"></div>
+
                     <div className="single-budget-content">
-                    <h2>{this.state.budget.name} Budget</h2>
+                    {/* <img className="steven3" src={Steven3} /> */}
+                    <h2 className="budget-header" style={{color:'white'}}>{this.state.budget.name} Budget</h2>
                     
                     <div>
-                        <SimpleTable 
+                        <Expenses 
                             budgetId={this.props.match.params.budgetId}
                         />
                     </div>
