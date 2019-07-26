@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { Redirect, Link } from 'react-router-dom'
 import Expenses from './Expenses.js'
-import Steven3 from '../images/steven3.png';
+// import Steven3 from '../images/steven3.png';
 
 export default class SingleBudget extends Component {
 

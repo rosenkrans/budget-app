@@ -81,7 +81,7 @@ body {
 }
 
 #edit-budget-form {
-  background-image: url('./images/stevenuniverse2.png');
+  background-image: url('./images/stevenuniverse3.jpg');
   background-size: cover;
   background-position: center center;
   position: relative;
@@ -150,7 +150,7 @@ body {
 }
 
 #single-expense-content {
-  background-image: url('./images/stevenuniverse6.jpg');
+  background-image: url('./images/stevenuniverse3.jpg');
   background-size: cover;
   background-position: center center;
   position: relative;
@@ -159,5 +159,17 @@ body {
   height: 100vh;
 }
 
+.edit-expense-form {
+  text-align: center;
+  color: white;
+}
 
-
+#edit-expense-form {
+  background-image: url('./images/stevenuniverse3.jpg');
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+  top: 0;
+  bottom: 0;
+  height: 100vh;
+}

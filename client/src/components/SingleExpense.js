@@ -56,6 +56,8 @@ export default class SingleExpense extends Component {
         return (
             this.state.isEditFormDisplayed
             ? <form onSubmit={this.handleSubmit}>
+                <div className="edit-expense-form" id="edit-expense-form">
+                <div>
                 <label htmlFor="expense-name">Expense Name: </label>
                 <input 
                     type="text" 
@@ -82,7 +84,9 @@ export default class SingleExpense extends Component {
                     onChange={this.handleInputChange} 
                     value={this.state.expense.estimatedAmount}
                 />
+                </div>
 
+                <div>
                 <label htmlFor="paid-date">Paid Date: </label>
                 <input 
                     type="date" 
@@ -102,6 +106,8 @@ export default class SingleExpense extends Component {
                 />
 
                 <input className="edit-submit-button" type="submit" value="Update Expense" />
+                </div>
+                </div>
             </form>
 
             :<div id="single-expense-content">
@@ -113,11 +119,11 @@ export default class SingleExpense extends Component {
                         <button class="button" onClick={this.handleToggleEditForm}>Edit Expense</button>
                         <button class="button" onClick={this.handleDeleteExpense}>Delete Expense</button>
                     </div>
-                    <h3 style={{color:'blue'}}>Expense: {this.state.expense.expenseName}</h3>
-                    <h3 style={{color:'blue'}}>Due Date: {this.state.expense.dueDate}</h3>
-                    <h3 style={{color:'blue'}}>Estimated Amount: {this.state.expense.estimatedAmount}</h3>
-                    <h3 style={{color:'blue'}}>Paid Date: {this.state.expense.paidDate}</h3>
-                    <h3 style={{color:'blue'}}>Actual Amount Paid: {this.state.expense.actualPaidAmount}</h3>      
+                    <h3 style={{color:'white'}}>Expense: {this.state.expense.expenseName}</h3>
+                    <h3 style={{color:'white'}}>Due Date: {this.state.expense.dueDate}</h3>
+                    <h3 style={{color:'white'}}>Estimated Amount: {this.state.expense.estimatedAmount}</h3>
+                    <h3 style={{color:'white'}}>Paid Date: {this.state.expense.paidDate}</h3>
+                    <h3 style={{color:'white'}}>Actual Amount Paid: {this.state.expense.actualPaidAmount}</h3>      
                 </div>
             </div>
         )
