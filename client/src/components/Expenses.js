@@ -8,7 +8,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import TextField from '@material-ui/core/TextField';
+// import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -75,6 +75,13 @@ export default class SimpleTable extends Component {
   }
 
   render(){
+    const sumOfEstimatedAmount=this.state.expenses.reduce((acc, estimated) => {
+      return(acc+estimated.estimatedAmount)
+    },0)
+    const sumOfPaidExpenses=this.state.expenses.reduce((acc, paid) => {
+      return(acc+paid.actualPaidAmount)
+    },0)
+    console.log(sumOfPaidExpenses)
     const expensesList=this.state.expenses.map((expense) => {
       return(
         <TableRow>
@@ -228,11 +235,21 @@ export default class SimpleTable extends Component {
                 <TableCell align="right">Estimated Amount</TableCell>
                 <TableCell align="right">Date Paid</TableCell>
                 <TableCell align="right">Amount Paid</TableCell>
+                
               </TableRow>
+            
             </TableHead>
             <TableBody>
               {expensesList}
+              <TableRow>
+                <TableCell>{[<strong>Total</strong>]}</TableCell>
+                <TableCell align="right"></TableCell>
+                <TableCell align="right">{sumOfEstimatedAmount}</TableCell>
+                <TableCell align="right"></TableCell>
+                <TableCell align="right">{sumOfPaidExpenses}</TableCell>              
+              </TableRow>
             </TableBody>
+           
           </Table>
         </Paper>
         </div>
