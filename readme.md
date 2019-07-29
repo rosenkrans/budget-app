@@ -24,14 +24,19 @@ My Project 3 is a budgeting app.
 * View list of budgets
 * Add, view, edit, and delete an item in a budget
 * View list of items in a budget
+* Add, view, edit, and delete income entries
+* View a list of income entries
 
 ## ERD:
-![erd](src/images/proj3erd.jpg)
+![erd](client/src/images/proj3erd.jpg)
 
 ## Wireframe:
-![erd](src/images/proj3wireframe.jpg)
+![erd](client/src/images/proj3wireframe.jpg)
 
 ## Cited Code:
 * 
 
 ## Future Release Features:
+* Show values in red if payment was higher than estimated
+* Show value of balance in red if it goes below .00
+* Show date paid in red if paid late

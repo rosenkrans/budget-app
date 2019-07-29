@@ -109,7 +109,6 @@ handleSubmit = (event) => {
       return(
         <TableRow>
           <TableCell><Link to={`/budgets/${this.props.budgetId}/incomes/${income._id}`}>{income.incomeName}</Link></TableCell>
-          {/* <TableCell>{income.incomeName}</TableCell> */}
           <TableCell>{income.incomeDate}</TableCell>
           <TableCell align="right">{income.income}</TableCell>
         </TableRow>
@@ -188,8 +187,6 @@ handleSubmit = (event) => {
                   </div>  
           }
         </div>
-
-
 
 
         <div>
@@ -277,7 +274,7 @@ handleSubmit = (event) => {
                 <TableRow>
                   <TableCell>{[<strong>Income Total</strong>]}</TableCell>
                   <TableCell></TableCell>
-                  <TableCell align="right">{sumOfIncome}</TableCell>            
+                  <TableCell align="right">$ {sumOfIncome}</TableCell>            
                 </TableRow>
               </TableBody>          
             </Table>
@@ -303,16 +300,16 @@ handleSubmit = (event) => {
               <TableRow>
                 <TableCell>{[<strong>Total</strong>]}</TableCell>
                 <TableCell align="right"></TableCell>
-                <TableCell align="right">{sumOfEstimatedAmount}</TableCell>
+                <TableCell align="right">$ {sumOfEstimatedAmount}</TableCell>
                 <TableCell align="right"></TableCell>
-                <TableCell align="right">{sumOfPaidExpenses}</TableCell>              
+                <TableCell align="right">$ {sumOfPaidExpenses}</TableCell>              
               </TableRow>
             </TableBody>          
           </Table>
         </Paper>
         </div>
         <div>
-          <p><strong>Balance: </strong>{sumOfIncome-sumOfPaidExpenses}</p>
+          <p><strong>Balance: </strong>${sumOfIncome-sumOfPaidExpenses}</p>
         </div>
       </div>
     )
