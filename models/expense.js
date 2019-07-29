@@ -32,15 +32,10 @@ function deleteExpense(expenseId) {
   return ExpenseCollection.findByIdAndDelete(expenseId)
 }
 
-// function deleteAllExpenses() {
-//     return ExpenseCollection.deleteMany()
-// }
-
 module.exports = {
   getAllExpensesByBudgetId,
   getSingleExpense,
   addNewExpense,
   updateExpense,
   deleteExpense
-//   deleteAllExpenses
 }

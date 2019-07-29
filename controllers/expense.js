@@ -55,16 +55,6 @@ expenseRouter.delete('/:expenseId', (req, res) => {
     })
 })
 
-// expenseRouter.delete('/allexpenses', (req, res) => {
-//     expenseApi.deleteAllExpenses(banana) 
-//     .then((deleteAllExpenses) => {
-//       res.json(deleteAllExpenses)
-//     })
-//     .catch((err) => {
-//         console.log(err)
-//       })
-// })
-
 module.exports = {
   expenseRouter
 }
