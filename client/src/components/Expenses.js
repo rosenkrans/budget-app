@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-// import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -109,7 +108,7 @@ handleSubmit = (event) => {
       return(
         <TableRow>
           <TableCell><Link to={`/budgets/${this.props.budgetId}/incomes/${income._id}`}>{income.incomeName}</Link></TableCell>
-          <TableCell>{income.incomeDate}</TableCell>
+          <TableCell align="right">{income.incomeDate}</TableCell>
           <TableCell align="right">{income.income}</TableCell>
         </TableRow>
       )
@@ -144,7 +143,7 @@ handleSubmit = (event) => {
           {this.state.isIncomeFormDisplayed
             ? <form onSubmit={this.handleIncomeSubmit}>
                 <div className="income-info">
-                  <label style={{color:'white'}} htmlFor="income-name">Income Name: </label>
+                  <label className="new-label" style={{color:'white'}} htmlFor="income-name">Income Name: </label>
                   <input 
                       type="text" 
                       name="incomeName" 
@@ -153,7 +152,7 @@ handleSubmit = (event) => {
                       value={this.state.newIncome.incomeName}
                   />
 
-                    <label style={{color:'white'}} htmlFor="income-date">Due Date: </label>
+                    <label className="new-label" style={{color:'white'}} htmlFor="income-date">Due Date: </label>
                     <input 
                         type="date" 
                         name="incomeDate" 
@@ -162,7 +161,7 @@ handleSubmit = (event) => {
                         value={this.state.newIncome.incomeDate}
                     />
 
-                  <label style={{color:'white'}} htmlFor="income-amount">Income Amount: </label>
+                  <label className="new-label" style={{color:'white'}} htmlFor="income-amount">Income Amount: </label>
                   <input 
                       type="text" 
                       name="income" 
@@ -195,48 +194,53 @@ handleSubmit = (event) => {
 
                   <div className="new-expense-form">
                     <div className="expense-name-due-est">
-                    <label htmlFor="expense-name">Expense Name: </label>
+                    <label className="new-label" htmlFor="expense-name">Expense Name: </label>
                     <input 
                         type="text" 
                         name="expenseName" 
                         id="expense-name" 
+                        className="new-field"
                         onChange={this.handleInputChange} 
                         value={this.state.newExpense.expenseName}
                     />
 
-                    <label htmlFor="due-date">Due Date: </label>
+                    <label className="new-label" htmlFor="due-date">Due Date: </label>
                     <input 
                         type="date" 
                         name="dueDate" 
                         id="due-date" 
+                        className="new-field"
                         onChange={this.handleInputChange} 
                         value={this.state.newExpense.dueDate}
                     />
 
-                    <label htmlFor="estimated-amount">Estimated Amount: </label>
+                    <label className="new-label" htmlFor="estimated-amount">Estimated Amount: </label>
                     <input 
                         type="text" 
                         name="estimatedAmount" 
                         id="estimated-amount" 
+                        className="new-field"
                         onChange={this.handleInputChange} 
                         value={this.state.newExpense.estimatedAmount}
                     />
                     </div>
 
-                    <label htmlFor="paid-date">Paid Date: </label>
+                    <label className="new-label" htmlFor="paid-date">Paid Date: </label>
                     <input 
                         type="date" 
                         name="paidDate" 
                         id="paid-date" 
+                        className="new-field"
                         onChange={this.handleInputChange} 
                         value={this.state.newExpense.paidDate}
                     />
 
-                    <label htmlFor="actual-paid-amount">Actual Paid Amount: </label>
+                    <label className="new-label" htmlFor="actual-paid-amount">Actual Paid Amount: </label>
                     <input 
                         type="text" 
                         name="actualPaidAmount" 
                         id="actual-paid-amount" 
+                        className="new-field"
                         onChange={this.handleInputChange} 
                         value={this.state.newExpense.actualPaidAmount}
                     />
@@ -263,9 +267,9 @@ handleSubmit = (event) => {
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell>Income Name</TableCell>
-                  <TableCell>Date Deposited</TableCell>
-                  <TableCell align="right">Income Amount</TableCell>            
+                  <TableCell style={{fontSize:'16px', color:'black'}}>{[<strong>Income Name</strong>]} </TableCell>
+                  <TableCell style={{fontSize:'16px', color:'black'}} align="right">{[<strong>Date Deposited</strong>]}</TableCell>
+                  <TableCell style={{fontSize:'16px', color:'black'}} align="right">{[<strong>Income Amount</strong>]}</TableCell>            
                 </TableRow>
               
               </TableHead>
@@ -273,7 +277,7 @@ handleSubmit = (event) => {
                 {incomeList}
                 <TableRow>
                   <TableCell>{[<strong>Income Total</strong>]}</TableCell>
-                  <TableCell></TableCell>
+                  <TableCell align="right"></TableCell>
                   <TableCell align="right">$ {sumOfIncome}</TableCell>            
                 </TableRow>
               </TableBody>          
@@ -287,11 +291,11 @@ handleSubmit = (event) => {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>Expense Name</TableCell>
-                <TableCell align="right">Date Due</TableCell>
-                <TableCell align="right">Estimated Amount</TableCell>
-                <TableCell align="right">Date Paid</TableCell>
-                <TableCell align="right">Amount Paid</TableCell>               
+                <TableCell style={{fontSize:'16px', color:'black'}}>{[<strong>Expense Name</strong>]}</TableCell>
+                <TableCell style={{fontSize:'16px', color:'black'}} align="right">{[<strong>Date Due</strong>]}</TableCell>
+                <TableCell style={{fontSize:'16px', color:'black'}} align="right">{[<strong>Estimated Amount</strong>]}</TableCell>
+                <TableCell style={{fontSize:'16px', color:'black'}} align="right">{[<strong>Date Paid</strong>]}</TableCell>
+                <TableCell style={{fontSize:'16px', color:'black'}} align="right">{[<strong>Amount Paid</strong>]}</TableCell>               
               </TableRow>
             
             </TableHead>
@@ -309,7 +313,7 @@ handleSubmit = (event) => {
         </Paper>
         </div>
         <div>
-          <p><strong>Balance: </strong>${sumOfIncome-sumOfPaidExpenses}</p>
+          <p><strong>Balance: </strong>${(sumOfIncome-sumOfPaidExpenses).toFixed(2)}</p>
         </div>
       </div>
     )

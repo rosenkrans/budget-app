@@ -1,6 +1,5 @@
 body {
   background-color: #DFC0FF;
-  /* text-align: center; */
 }
 
 #budget-list-body {
@@ -121,6 +120,10 @@ body {
   height: 100vh;
 }
 
+.new-label {
+  margin-left: 30px;
+}
+
 .expense-table {
   margin-top: 20px;
 }
@@ -162,12 +165,10 @@ body {
 .edit-expense-form {
   text-align: center;
   color: white;
-  
 }
 
 #expense-name {
   margin-top: 25px;
-  
 }
 
 #edit-expense-form {
@@ -186,3 +187,42 @@ body {
   width: 150px;
   border-radius: 7px;
 }
+
+#single-income-content {
+  background-image: url('./images/stevenuniverse3.jpg');
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+  top: 0;
+  bottom: 0;
+  height: 100vh;
+}
+
+.single-income-content {
+  text-align: center;
+  color: white;
+}
+
+#edit-income-form {
+  background-image: url('./images/stevenuniverse3.jpg');
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+  top: 0;
+  bottom: 0;
+  height: 100vh;
+}
+
+.edit-income-form {
+  text-align: center;
+  color: white;
+}
+
+#income-name {
+  margin-top: 25px;
+}
+
+.input-field {
+  width: 150px;
+}
+

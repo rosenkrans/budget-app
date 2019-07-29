@@ -66,7 +66,8 @@ export default class SingleIncome extends Component {
                   <input 
                       type="text" 
                       name="incomeName" 
-                      id="income-name" 
+                      id="income-name"
+                      className="input-field"
                     onChange={this.handleInputChange} 
                     value={this.state.income.incomeName}
                 />
@@ -77,6 +78,7 @@ export default class SingleIncome extends Component {
                         type="date" 
                         name="incomeDate" 
                         id="income-date" 
+                        className="input-field"
                     onChange={this.handleInputChange} 
                     value={this.state.income.incomeDate}
                 />
@@ -87,6 +89,7 @@ export default class SingleIncome extends Component {
                       type="text" 
                       name="income" 
                       id="income" 
+                      className="input-field"
                     onChange={this.handleInputChange} 
                     value={this.state.income.income}
                 />

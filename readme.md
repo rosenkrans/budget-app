@@ -33,10 +33,10 @@ My Project 3 is a budgeting app.
 ## Wireframe:
 ![erd](client/src/images/proj3wireframe.jpg)
 
-## Cited Code:
-* 
-
 ## Future Release Features:
 * Show values in red if payment was higher than estimated
 * Show value of balance in red if it goes below .00
 * Show date paid in red if paid late
+* Add forms instead of input fields
+* Ability to edit items in table on the table view
+* Drag and drop list items to re-arrange their order
