@@ -122,7 +122,7 @@ body {
 }
 
 .expense-table {
-  /* width: 70%;  */
+  margin-top: 20px;
 }
 
 .expense-name-due-est {
@@ -178,4 +178,11 @@ body {
   top: 0;
   bottom: 0;
   height: 100vh;
+}
+
+.create-income-button {
+  background-color: purple;
+  color: white;
+  width: 150px;
+  border-radius: 7px;
 }

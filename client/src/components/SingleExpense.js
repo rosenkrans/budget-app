@@ -6,7 +6,7 @@ export default class SingleExpense extends Component {
     state = {
         expense: {},
         isEditFormDisplayed: false, 
-        redirectToHome: false
+        redirectToBudget: false
     }
 
     componentDidMount() {
@@ -32,7 +32,7 @@ export default class SingleExpense extends Component {
                 this.setState({
                     expense: res.data,
                     isEditFormDisplayed: false,
-                    redirectToHome: true
+                    redirectToBudget: true
                 })
             })
     
@@ -45,14 +45,16 @@ export default class SingleExpense extends Component {
     }
         
     handleDeleteExpense = () => {
+        if(window.confirm("Are you sure you want to delete?")){ 
         axios.delete(`/api/budgets/${this.props.match.params.budgetId}/expenses/${this.state.expense._id}`)
             .then(() => {
-                this.setState({redirectToHome: true})
+                this.setState({redirectToBudget: true})
             })
+        }
     }
 
     render() {
-        if(this.state.redirectToHome) {
+        if(this.state.redirectToBudget) {
             return <Redirect to={`/budgets/${this.props.match.params.budgetId}`} />
         }
         return (

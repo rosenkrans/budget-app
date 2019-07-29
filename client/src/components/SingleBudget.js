@@ -52,10 +52,12 @@ export default class SingleBudget extends Component {
     }
         
     handleDeleteBudget = () => {
-        axios.delete(`/api/budgets/${this.state.budget._id}`)
-            .then(() => {
-                this.setState({redirectToHome: true})
-            })
+        if(window.confirm("Are you sure you want to delete?")){
+            axios.delete(`/api/budgets/${this.state.budget._id}`)
+                .then(() => {
+                    this.setState({redirectToHome: true})
+                })
+        }
     }
 
     render() {
@@ -76,17 +78,6 @@ export default class SingleBudget extends Component {
                         value={this.state.budget.name}
                     />
 
-                    {/* <TextField 
-                        id="budget-name"
-                        label="Budget Name: "
-                        style={{
-                            backgroundColor: "white"
-                        }}
-                        value={this.state.budget.name}
-                        onChange={this.handleInputChange}
-                        margin="normal"
-                        variant="filled"
-                    /> */}
 
                     <input className="edit-submit-button" type="submit" value="Update Budget" />
                 </div>

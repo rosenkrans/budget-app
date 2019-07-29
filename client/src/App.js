@@ -5,6 +5,7 @@ import SingleBudget from './components/SingleBudget.js'
 // import Expenses from './components/Expenses.js'
 import SingleExpense from './components/SingleExpense.js'
 import './App.css'
+import SingleIncome from './components/SingleIncomes.js';
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={Budgets} />
-          <Route path="/budgets/:budgetId/expenses/:expenseId" component={SingleExpense} />   
+          <Route path="/budgets/:budgetId/expenses/:expenseId" component={SingleExpense} />
+          <Route path="/budgets/:budgetId/incomes/:incomeId" component={SingleIncome} />  
           <Route path="/budgets/:budgetId" component={SingleBudget} /> 
           {/* <Route path="/budgets/:budgetId/expenses" component={Expenses} /> */}            
           {/* <Route path="/expenses/:expenseId" component={SingleExpense} />

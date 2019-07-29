@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+// import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -8,22 +8,16 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-// import TextField from '@material-ui/core/TextField';
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    width: '100%',
-    marginTop: theme.spacing(3),
-    overflowX: 'auto',
-  },
-  table: {
-    minWidth: 650,
-  },
-}));
 
 export default class SimpleTable extends Component {
   
   state = {
+    incomes: [],
+    newIncome: {
+      incomeName: '',
+      income: '',
+      incomeDate: ''
+    },
     expenses: [],
     newExpense: {
         expenseName: '',
@@ -31,8 +25,10 @@ export default class SimpleTable extends Component {
         actualPaidAmount: '',
         dueDate: '',
         paidDate: ''
+        
     },
-    isNewFormDisplayed: false
+    isNewFormDisplayed: false,
+    isIncomeFormDisplayed: false
 }
 
   getAllExpensesByBudgetId = () => {
@@ -42,13 +38,27 @@ export default class SimpleTable extends Component {
       })
   }
 
+  getAllIncomesByBudgetId = () => {
+    axios.get(`/api/budgets/${this.props.budgetId}/incomes`)
+      .then((res) => {
+        this.setState({incomes: res.data})
+      })
+  }
+
   componentDidMount() {
+    this.getAllIncomesByBudgetId()
     this.getAllExpensesByBudgetId()
   }
 
   handleToggleNewForm = () => {
     this.setState((state) => {
         return {isNewFormDisplayed: !state.isNewFormDisplayed}
+    })
+  }
+
+  handleToggleIncomeForm = () => {
+    this.setState((state) => {
+      return {isIncomeFormDisplayed: !state.isIncomeFormDisplayed}
     })
   }
 
@@ -59,29 +69,64 @@ export default class SimpleTable extends Component {
       this.setState({newExpense: copiedExpense})
   }
 
-  handleSubmit = (event) => {
+  handleIncomeInputChange = (event) => {
+    const copiedIncome = {...this.state.newIncome}
+    copiedIncome[event.target.name] = event.target.value 
+
+    this.setState({newIncome: copiedIncome})
+  }
+
+handleSubmit = (event) => {
+  event.preventDefault()       
+  axios.post(`/api/budgets/${this.props.budgetId}/expenses`, this.state.newExpense)
+      .then(() => {
+        this.setState({isNewFormDisplayed: false, newExpense: {
+          expenseName: '',
+          estimatedAmount: '',
+          actualPaidAmount: '',
+          dueDate: '',
+          paidDate: ''
+        }})
+        this.getAllExpensesByBudgetId() 
+      })
+  }
+
+  handleIncomeSubmit = (event) => {
       event.preventDefault()       
-      axios.post(`/api/budgets/${this.props.budgetId}/expenses`, this.state.newExpense)
+      axios.post(`/api/budgets/${this.props.budgetId}/incomes`, this.state.newIncome)
           .then(() => {
-            this.setState({isNewFormDisplayed: false, newExpense: {
-              expenseName: '',
-              estimatedAmount: '',
-              actualPaidAmount: '',
-              dueDate: '',
-              paidDate: ''
+            this.setState({isIncomeFormDisplayed: false, newIncome: {
+              
+              incomeName: '',
+          income: ''
             }})
-            this.getAllExpensesByBudgetId() 
+            this.getAllIncomesByBudgetId() 
           })
   }
 
   render(){
+    const incomeList=this.state.incomes.map((income) => {
+      return(
+        <TableRow>
+          <TableCell><Link to={`/budgets/${this.props.budgetId}/incomes/${income._id}`}>{income.incomeName}</Link></TableCell>
+          {/* <TableCell>{income.incomeName}</TableCell> */}
+          <TableCell>{income.incomeDate}</TableCell>
+          <TableCell align="right">{income.income}</TableCell>
+        </TableRow>
+      )
+    })
+
+    const sumOfIncome=this.state.incomes.reduce((acc, income) => {
+      return(acc+income.income)
+    },0)
+
     const sumOfEstimatedAmount=this.state.expenses.reduce((acc, estimated) => {
       return(acc+estimated.estimatedAmount)
     },0)
     const sumOfPaidExpenses=this.state.expenses.reduce((acc, paid) => {
       return(acc+paid.actualPaidAmount)
     },0)
-    console.log(sumOfPaidExpenses)
+  
     const expensesList=this.state.expenses.map((expense) => {
       return(
         <TableRow>
@@ -96,134 +141,149 @@ export default class SimpleTable extends Component {
 
     return (
       <div>
-        {this.state.isNewFormDisplayed
-            ? <form onSubmit={this.handleSubmit}>
-
-                <div className="new-expense-form">
-                  <div className="expense-name-due-est">
-                  <label htmlFor="expense-name">Expense Name: </label>
+        <div>
+          {this.state.isIncomeFormDisplayed
+            ? <form onSubmit={this.handleIncomeSubmit}>
+                <div className="income-info">
+                  <label style={{color:'white'}} htmlFor="income-name">Income Name: </label>
                   <input 
                       type="text" 
-                      name="expenseName" 
-                      id="expense-name" 
-                      onChange={this.handleInputChange} 
-                      value={this.state.newExpense.expenseName}
+                      name="incomeName" 
+                      id="income-name" 
+                      onChange={this.handleIncomeInputChange} 
+                      value={this.state.newIncome.incomeName}
                   />
 
-                  {/* <TextField 
-                    id="expense-name"
-                    label="Expense Name: "
-                    style={{
-                        backgroundColor: "white"
-                    }}
-                    value={this.state.newExpense.expenseName}
-                    onChange={this.handleInputChange}
-                    margin="normal"
-                    variant="outlined"
-                  />     */}
+                    <label style={{color:'white'}} htmlFor="income-date">Due Date: </label>
+                    <input 
+                        type="date" 
+                        name="incomeDate" 
+                        id="income-date" 
+                        onChange={this.handleIncomeInputChange} 
+                        value={this.state.newIncome.incomeDate}
+                    />
 
-
-                  <label htmlFor="due-date">Due Date: </label>
-                  <input 
-                      type="date" 
-                      name="dueDate" 
-                      id="due-date" 
-                      onChange={this.handleInputChange} 
-                      value={this.state.newExpense.dueDate}
-                  />
-
-                  {/* <TextField 
-                    id="due-date"
-                    label="Due Date: "
-                    style={{
-                        backgroundColor: "white"
-                    }}
-                    value={this.state.newExpense.dueDate}
-                    onChange={this.handleInputChange}
-                    margin="normal"
-                    variant="outlined"
-                  />   */}
-
-                  <label htmlFor="estimated-amount">Estimated Amount: </label>
+                  <label style={{color:'white'}} htmlFor="income-amount">Income Amount: </label>
                   <input 
                       type="text" 
-                      name="estimatedAmount" 
-                      id="estimated-amount" 
-                      onChange={this.handleInputChange} 
-                      value={this.state.newExpense.estimatedAmount}
+                      name="income" 
+                      id="income" 
+                      onChange={this.handleIncomeInputChange} 
+                      value={this.state.newIncome.income}
                   />
-                  </div>
-
-                  {/* <TextField 
-                    id="estimated-amount"
-                    label="Estimated Amount: "
-                    style={{
-                        backgroundColor: "white"
-                    }}
-                    value={this.state.newExpense.estimatedAmount}
-                    onChange={this.handleInputChange}
-                    margin="normal"
-                    variant="outlined"
-                  />   */}
-
-                  <label htmlFor="paid-date">Paid Date: </label>
-                  <input 
-                      type="date" 
-                      name="paidDate" 
-                      id="paid-date" 
-                      onChange={this.handleInputChange} 
-                      value={this.state.newExpense.paidDate}
-                  />
-
-                  {/* <TextField 
-                    id="paid-date"
-                    label="Paid Date: "
-                    style={{
-                        backgroundColor: "white"
-                    }}
-                    value={this.state.newExpense.paidDate}
-                    onChange={this.handleInputChange}
-                    margin="normal"
-                    variant="outlined"
-                  />   */}
-
-                  <label htmlFor="actual-paid-amount">Actual Paid Amount: </label>
-                  <input 
-                      type="text" 
-                      name="actualPaidAmount" 
-                      id="actual-paid-amount" 
-                      onChange={this.handleInputChange} 
-                      value={this.state.newExpense.actualPaidAmount}
-                  />
-
-                  {/* <TextField 
-                    id="actual-paid-amount"
-                    label="Actual Paid Amount: "
-                    style={{
-                        backgroundColor: "white"
-                    }}
-                    value={this.state.newExpense.actualPaidAmount}
-                    onChange={this.handleInputChange}
-                    margin="normal"
-                    variant="outlined"
-                  />   */}
-
-                  <div>
-                  <input className="edit-submit-button" type="submit" value="Add Expense" />
-                  </div>
                 </div>
-                {/* </div> */}
+                <div>
+                  <input className="edit-submit-button" type="submit" value="Add Income" />
+                </div>
+                
               </form>
 
-                :<div>
-                    <div>
-                      <button className="create-expense-button" 
-                        onClick={this.handleToggleNewForm}>
-                        Create New Expense
-                      </button>
+                  :<div>
+                      <div>
+                        <button className="create-income-button" 
+                          onClick={this.handleToggleIncomeForm}>
+                          New Income
+                        </button>
+                      </div>
+                  </div>  
+          }
+        </div>
+
+
+
+
+        <div>
+          {this.state.isNewFormDisplayed
+              ? <form onSubmit={this.handleSubmit}>
+
+                  <div className="new-expense-form">
+                    <div className="expense-name-due-est">
+                    <label htmlFor="expense-name">Expense Name: </label>
+                    <input 
+                        type="text" 
+                        name="expenseName" 
+                        id="expense-name" 
+                        onChange={this.handleInputChange} 
+                        value={this.state.newExpense.expenseName}
+                    />
+
+                    <label htmlFor="due-date">Due Date: </label>
+                    <input 
+                        type="date" 
+                        name="dueDate" 
+                        id="due-date" 
+                        onChange={this.handleInputChange} 
+                        value={this.state.newExpense.dueDate}
+                    />
+
+                    <label htmlFor="estimated-amount">Estimated Amount: </label>
+                    <input 
+                        type="text" 
+                        name="estimatedAmount" 
+                        id="estimated-amount" 
+                        onChange={this.handleInputChange} 
+                        value={this.state.newExpense.estimatedAmount}
+                    />
                     </div>
-                </div>
-        }
+
+                    <label htmlFor="paid-date">Paid Date: </label>
+                    <input 
+                        type="date" 
+                        name="paidDate" 
+                        id="paid-date" 
+                        onChange={this.handleInputChange} 
+                        value={this.state.newExpense.paidDate}
+                    />
+
+                    <label htmlFor="actual-paid-amount">Actual Paid Amount: </label>
+                    <input 
+                        type="text" 
+                        name="actualPaidAmount" 
+                        id="actual-paid-amount" 
+                        onChange={this.handleInputChange} 
+                        value={this.state.newExpense.actualPaidAmount}
+                    />
+
+                    <div>
+                    <input className="edit-submit-button" type="submit" value="Add Expense" />
+                    </div>
+                  </div>
+                </form>
+
+                  :<div>
+                      <div>
+                        <button className="create-expense-button" 
+                          onClick={this.handleToggleNewForm}>
+                          Create New Expense
+                        </button>
+                      </div>
+                  </div>
+          }
+      </div>
+
+        <div className="income-table">
+          <Paper>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Income Name</TableCell>
+                  <TableCell>Date Deposited</TableCell>
+                  <TableCell align="right">Income Amount</TableCell>            
+                </TableRow>
+              
+              </TableHead>
+              <TableBody>
+                {incomeList}
+                <TableRow>
+                  <TableCell>{[<strong>Income Total</strong>]}</TableCell>
+                  <TableCell></TableCell>
+                  <TableCell align="right">{sumOfIncome}</TableCell>            
+                </TableRow>
+              </TableBody>          
+            </Table>
+          </Paper>
+
+        </div>
 
         <div className="expense-table">
         <Paper>
@@ -234,8 +294,7 @@ export default class SimpleTable extends Component {
                 <TableCell align="right">Date Due</TableCell>
                 <TableCell align="right">Estimated Amount</TableCell>
                 <TableCell align="right">Date Paid</TableCell>
-                <TableCell align="right">Amount Paid</TableCell>
-                
+                <TableCell align="right">Amount Paid</TableCell>               
               </TableRow>
             
             </TableHead>
@@ -248,10 +307,12 @@ export default class SimpleTable extends Component {
                 <TableCell align="right"></TableCell>
                 <TableCell align="right">{sumOfPaidExpenses}</TableCell>              
               </TableRow>
-            </TableBody>
-           
+            </TableBody>          
           </Table>
         </Paper>
+        </div>
+        <div>
+          <p><strong>Balance: </strong>{sumOfIncome-sumOfPaidExpenses}</p>
         </div>
       </div>
     )
